@@ -1,0 +1,33 @@
+.searchbar {
+  margin: 0 auto;
+  width: 1400px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 20px;
+}
+
+.searchbar input {
+  width: 250px;
+  height: 32px;
+  outline: none;
+  background-color: #efefef;
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 4px 6px;
+  font-size: 1.6rem;
+}
+
+.searchbar img {
+  height: 40px;
+  margin: 0 20px;
+}
+
+.searchbarimg {
+  display: flex;
+}
+
+.searchbarlogos {
+  margin: 0 90px;
+}

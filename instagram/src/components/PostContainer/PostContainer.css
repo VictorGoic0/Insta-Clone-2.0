@@ -1,0 +1,75 @@
+.post-container {
+  width: 604px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+}
+
+.post {
+  border: 1px solid #efefef;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.thumbnail {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+  padding: 15px 0;
+}
+
+.post-header h2 {
+  margin-left: 9px;
+}
+
+.post-img {
+  max-width: 603px;
+}
+
+.post-footer {
+  height: 28%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 16px;
+  flex-grow: 1;
+  align-content: flex-start;
+}
+
+.post-footer h3 {
+  width: 100%;
+}
+
+.post-footer h3, h4, p {
+  padding-top: 12px;
+}
+
+.post form {
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.post form input {
+  font-size: 1.6rem;
+  border: none;
+  width: 100%;
+  outline: none;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  margin-top: 12px;
+  margin-right: 12px;
+}
+
+.logo:hover {
+  cursor: pointer;
+}

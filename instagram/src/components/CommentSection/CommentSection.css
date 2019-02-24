@@ -1,0 +1,19 @@
+.comment {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.comment p {
+  margin-left: 4px;
+}
+
+.timestamp {
+  border-bottom: 1px solid #efeff0;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.comments {
+  width: 97%;
+}

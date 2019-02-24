@@ -77,7 +77,32 @@ const dummyData = [
         text: "I like how Half Dome looks so old and useless"
       }
     ]
-  }
+  },
+  {
+    username: "Apex Legends",
+    thumbnailUrl:
+      "https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2019/02/20/105750111-1550681962198screenshot2019-02-20at11.57.41am.530x298.png?v=1550681993",
+
+    imageUrl:
+      "https://www.washingtonpost.com/resizer/JhUZA3EznUke-mPOIH93u37uwhU=/1454x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/OBCD6FBOJRH5BKV7M3S6ELMZFU.jpg",
+    likes: 50000,
+    timestamp: "February 12th 2019, 2:42:40 pm",
+    comments: [
+      {
+        username: "shroud",
+        text:
+          "Fuck me bro"
+      },
+      {
+        username: "summit1g",
+        text: "Looks delicious!"
+      },
+      {
+        username: "t1alpha",
+        text: "Can't wait to try it!"
+      }
+    ]
+  },
 ];
 
 export default dummyData;
