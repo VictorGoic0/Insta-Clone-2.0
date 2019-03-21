@@ -1,7 +1,7 @@
-import React from 'react';
-import './CommentSection.css';
-import Comment from './Comment'
-import PropTypes from 'prop-types';
+import React from "react";
+import "./CommentSection.css";
+import Comment from "./Comment";
+import PropTypes from "prop-types";
 
 class CommentSection extends React.Component {
   constructor(props) {
@@ -10,45 +10,49 @@ class CommentSection extends React.Component {
     this.state = {
       comments: props.comments,
       timestamp: props.timestamp,
-      text: ''
-    }
+      text: ""
+    };
   }
 
   handleChanges = e => {
-    console.log(this.state)
+    console.log(this.state);
     this.setState({
       text: e.target.value
-    })
-  }
+    });
+  };
 
   addNewComment = (e, i) => {
     e.preventDefault();
 
     const newComment = {
-      username: "commenting_specialist",
+      username: localStorage.getItem("user"),
       text: this.state.text
-    }
+    };
     this.setState({
       comments: [...this.state.comments, newComment],
-      timestamp: this.state.timestamp
-    })
-  }
+      timestamp: this.state.timestamp,
+      text: ""
+    });
+  };
 
   render() {
     return (
       <div className="comments">
-        {this.state.comments.map((input, index) => <Comment key={index} info={input} />)}
+        {this.state.comments.map((input, index) => (
+          <Comment key={index} info={input} />
+        ))}
         <p className="timestamp">{this.state.timestamp}</p>
         <form onSubmit={this.addNewComment}>
           <input
-          type="text"
-          value={this.state.text}
-          onChange={this.handleChanges}
-          placeholder="Add a comment...">
-          </input>
+            type="text"
+            value={this.state.text}
+            onChange={this.handleChanges}
+            placeholder="Add a comment..."
+            required
+          />
         </form>
       </div>
-    )
+    );
   }
 }
 
@@ -59,6 +63,6 @@ CommentSection.propTypes = {
       text: PropTypes.string.isRequired
     })
   )
-}
+};
 
 export default CommentSection;

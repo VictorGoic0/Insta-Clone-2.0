@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const authenticate = FirstComponent => SecondComponent => {
   return class extends React.Component {
@@ -6,23 +6,23 @@ const authenticate = FirstComponent => SecondComponent => {
       super();
       this.state = {
         loggedIn: false
-      }
+      };
     }
 
     componentDidMount() {
-      if (localStorage.getItem('user')) {
-        this.setState({ loggedIn: true })
+      if (localStorage.getItem("token")) {
+        this.setState({ loggedIn: true });
       }
     }
 
     render() {
       if (this.state.loggedIn) {
-        return <FirstComponent />
+        return <FirstComponent />;
       } else {
-        return <SecondComponent />
+        return <SecondComponent />;
       }
     }
-  }
-}
+  };
+};
 
 export default authenticate;
