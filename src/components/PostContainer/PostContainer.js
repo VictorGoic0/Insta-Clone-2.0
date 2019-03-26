@@ -1,15 +1,17 @@
-import React from 'react';
-import './PostContainer.css';
-import Post from './Post';
-import PropTypes from 'prop-types';
+import React from "react";
+import "./PostContainer.css";
+import Post from "./Post";
+import PropTypes from "prop-types";
 
 const PostContainer = props => {
   return (
     <div className="post-container">
-      {props.data.map((input, index) => <Post data={props.data[index]} key={props.data[index].timestamp} />)}
+      {props.data.map((input, index) => (
+        <Post data={props.data[index]} key={props.data[index].imageUrl} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
 PostContainer.propTypes = {
   data: PropTypes.arrayOf(
@@ -22,6 +24,6 @@ PostContainer.propTypes = {
       comments: PropTypes.array.isRequired
     })
   )
-}
+};
 
 export default PostContainer;

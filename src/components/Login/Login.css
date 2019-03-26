@@ -1,8 +1,8 @@
 .login {
-  margin: 100px auto;
+  margin: 200px auto;
   width: 600px;
   height: 480px;
-  border: 2px solid #e4e4e4;
+  border: 2px solid #bdbdbd;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;

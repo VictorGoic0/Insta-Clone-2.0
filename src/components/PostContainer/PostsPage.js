@@ -9,12 +9,15 @@ class PostsPage extends React.Component {
     super();
     this.state = {
       data: [],
+      filteredData: [],
       search: ""
     };
   }
 
   componentDidMount() {
-    this.setState({ data: dummyData });
+    this.setState({
+      data: dummyData
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -31,17 +34,11 @@ class PostsPage extends React.Component {
   };
 
   performSearch = () => {
-    const filteredData = this.state.data.filter(input =>
-      input.username.toLowerCase().includes(this.state.search.toLowerCase())
-    );
-
-    if (this.state.search.length === 0) {
+    if (this.state.search.length > 0) {
       this.setState({
-        data: dummyData
-      });
-    } else {
-      this.setState({
-        data: filteredData
+        filteredData: this.state.data.filter(input =>
+          input.username.toLowerCase().includes(this.state.search.toLowerCase())
+        )
       });
     }
   };
@@ -54,7 +51,11 @@ class PostsPage extends React.Component {
           handleChanges={this.handleChanges}
           search={this.state.search}
         />
-        <PostContainer data={this.state.data} />
+        {this.state.search.length === 0 ? (
+          <PostContainer data={this.state.data} />
+        ) : (
+          <PostContainer data={this.state.filteredData} />
+        )}
       </div>
     );
   }
