@@ -3,10 +3,12 @@ import "./CommentSection.css";
 import PropTypes from "prop-types";
 
 const Comment = props => {
+  const { thumbnailUrl, username, text } = props.comment;
   return (
     <div className="comment">
-      <h4>{props.comment.username}</h4>
-      <p>{props.comment.text}</p>
+      {thumbnailUrl ? <img src={thumbnailUrl} className="thumbnail" /> : null}
+      <h4>{username}</h4>
+      <p>{text}</p>
     </div>
   );
 };
