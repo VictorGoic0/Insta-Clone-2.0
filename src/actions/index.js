@@ -49,7 +49,7 @@ export const addPost = post => dispatch => {
     .post("http://localhost:5000/api/posts/", post)
     .then(res => {
       console.log(res);
-      dispatch({ type: ADD_POST_SUCCESS, payload: res.data.data });
+      dispatch({ type: ADD_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
@@ -68,7 +68,7 @@ export const deletePost = id => dispatch => {
     .delete(`http://localhost:5000/api/posts/${id}`)
     .then(res => {
       console.log(res);
-      dispatch({ type: DELETE_POST_SUCCESS, payload: res.data.data });
+      dispatch({ type: DELETE_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
@@ -87,11 +87,32 @@ export const editPost = post => dispatch => {
     .put(`http://localhost:5000/api/posts/${post.id}`, post)
     .then(res => {
       console.log(res);
-      dispatch({ type: EDIT_POST_SUCCESS, payload: res.data.data });
+      dispatch({ type: EDIT_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
       dispatch({ type: EDIT_POST_FAILURE, payload: err.message });
+    });
+};
+
+export const ADD_COMMENT = "ADD_COMMENT";
+export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
+export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
+
+export const addComment = comment => dispatch => {
+  dispatch({ type: ADD_COMMENT });
+  axios
+    .post(
+      `http://localhost:5000/api/posts/${comment.post_id}/comments`,
+      comment
+    )
+    .then(res => {
+      console.log(res);
+      dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: ADD_COMMENT_FAILURE, payload: err.message });
     });
 };
 

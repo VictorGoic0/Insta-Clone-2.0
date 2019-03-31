@@ -28,7 +28,10 @@ class Post extends React.Component {
             className="logo"
           />
           <h3>{this.props.post.likes} likes</h3>
-          <CommentSection comments={this.props.post.comments} />
+          <CommentSection
+            post_id={this.props.post.id}
+            comments={this.props.post.comments}
+          />
         </div>
       </div>
     );

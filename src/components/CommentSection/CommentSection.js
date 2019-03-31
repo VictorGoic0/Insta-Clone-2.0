@@ -1,22 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
 import "./CommentSection.css";
 import Comment from "./Comment";
+import { connect } from "react-redux";
+import { addComment } from "../../actions";
 import PropTypes from "prop-types";
 
-class CommentSection extends React.Component {
+class CommentSection extends Component {
   state = {
-    text: ""
+    comment: {
+      post_id: this.props.post_id,
+      user_id: 15,
+      text: ""
+    }
   };
 
   handleChanges = e => {
-    this.setState({
-      text: e.target.value
-    });
+    e.persist();
+    this.setState(prevState => ({
+      comment: {
+        ...prevState.comment,
+        text: e.target.value
+      }
+    }));
+    console.log(this.state);
   };
 
-  addNewComment = e => {
+  addNewComment = (e, comment) => {
     e.preventDefault();
-    return null;
+    this.props.addComment(comment);
   };
 
   render() {
@@ -26,7 +37,7 @@ class CommentSection extends React.Component {
           <Comment key={comment.id} comment={comment} />
         ))}
         <p className="timestamp">10 minutes ago</p>
-        <form onSubmit={this.addNewComment}>
+        <form onSubmit={e => this.addNewComment(e, this.state.comment)}>
           <input
             type="text"
             value={this.state.text}
@@ -49,4 +60,7 @@ CommentSection.propTypes = {
   )
 };
 
-export default CommentSection;
+export default connect(
+  null,
+  { addComment }
+)(CommentSection);
