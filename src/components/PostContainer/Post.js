@@ -22,35 +22,6 @@ class Post extends React.Component {
       likes: (this.state.likes += 1)
     });
     console.log(this.state);
-    const time = new Date();
-    const hours = time.getHours();
-    const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
-    const year = time.getFullYear();
-    const month = time.getMonth();
-    const date = time.getUTCDate();
-    const all =
-      seconds +
-      minutes * 60 +
-      hours * 60 * 60 +
-      date * 24 * 60 * 60 +
-      month * 30 * 24 * 60 * 60 +
-      year * 365 * 24 * 60 * 60;
-    const convertToTime = inputTime => {
-      if (inputTime < 60) {
-        return `${inputTime} seconds ago`;
-      } else if (inputTime < 3600) {
-        return `${Math.round(inputTime / 60)} minutes ago`;
-      } else if (inputTime < 86400) {
-        return `${Math.round(inputTime / 60 / 60)} hours ago`;
-      } else if (inputTime < 2592000) {
-        return `${Math.round(inputTime / 30 / 60 / 60)} days ago`;
-      } else if (inputTime < 31104000) {
-        return `${Math.round(inputTime / 12 / 30 / 60 / 60)} months ago`;
-      } else if (inputTime < 311040000) {
-        return `${Math.round(inputTime / 10 / 12 / 30 / 60 / 60)} years ago`;
-      }
-    };
   };
 
   render() {
