@@ -2,28 +2,15 @@ import React from "react";
 import "./PostContainer.css";
 import SearchBar from "../SearchBar/SearchBar";
 import PostContainer from "./PostContainer";
-import dummyData from "../../dummy-data";
 
 class PostsPage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      filteredData: [],
-      search: ""
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      data: dummyData
-    });
-  }
+  state = {
+    search: ""
+  };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.search !== this.state.search) {
       this.performSearch();
-      console.log(this.state);
     }
   }
 
@@ -51,11 +38,7 @@ class PostsPage extends React.Component {
           handleChanges={this.handleChanges}
           search={this.state.search}
         />
-        {this.state.search.length === 0 ? (
-          <PostContainer data={this.state.data} />
-        ) : (
-          <PostContainer data={this.state.filteredData} />
-        )}
+        <PostContainer />
       </div>
     );
   }

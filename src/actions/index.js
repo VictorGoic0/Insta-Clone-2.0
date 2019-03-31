@@ -11,7 +11,7 @@ export const getPosts = () => dispatch => {
     .get("http://localhost:5000/api/posts/")
     .then(res => {
       console.log(res);
-      dispatch({ type: GET_POSTS_SUCCESS, payload: res.data.data });
+      dispatch({ type: GET_POSTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
@@ -30,7 +30,7 @@ export const getPost = id => dispatch => {
     .get(`http://localhost:5000/api/posts/${id}`)
     .then(res => {
       console.log(res);
-      dispatch({ type: GET_POST_SUCCESS, payload: res.data.data });
+      dispatch({ type: GET_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);

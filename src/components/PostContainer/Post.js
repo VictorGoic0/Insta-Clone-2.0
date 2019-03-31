@@ -4,55 +4,31 @@ import PropTypes from "prop-types";
 import "./PostContainer.css";
 
 class Post extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-    this.state = {
-      username: props.data.username,
-      thumbnailUrl: props.data.thumbnailUrl,
-      imageUrl: props.data.imageUrl,
-      likes: props.data.likes,
-      timestamp: props.data.timestamp,
-      comments: props.data.comments
-    };
-  }
-
-  likeIncrement = () => {
-    this.setState({
-      likes: (this.state.likes += 1)
-    });
-    console.log(this.state);
-  };
-
   render() {
     return (
       <div className="post">
         <div className="post-header">
           <img
             className="thumbnail"
-            src={this.state.thumbnailUrl}
+            src={this.props.post.thumbnailUrl}
             alt="profile thumbnail"
           />
-          <h2>{this.state.username}</h2>
+          <h2>{this.props.post.username}</h2>
         </div>
-        <img className="post-img" src={this.state.imageUrl} alt="post" />
+        <img className="post-img" src={this.props.post.imageUrl} alt="post" />
         <div className="post-footer">
           <img
             src="https://img.icons8.com/windows/32/000000/like.png"
             alt="heart"
             className="logo"
-            onClick={this.likeIncrement}
           />
           <img
             src="https://img.icons8.com/windows/32/000000/speech-bubble.png"
             alt="comment"
             className="logo"
           />
-          <h3>{this.state.likes} likes</h3>
-          <CommentSection
-            comments={this.state.comments}
-            timestamp={this.state.timestamp}
-          />
+          <h3>{this.props.post.likes} likes</h3>
+          <CommentSection comments={this.props.post.comments} />
         </div>
       </div>
     );

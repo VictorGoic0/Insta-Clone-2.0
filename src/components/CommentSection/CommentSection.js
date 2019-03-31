@@ -4,44 +4,28 @@ import Comment from "./Comment";
 import PropTypes from "prop-types";
 
 class CommentSection extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-    this.state = {
-      comments: props.comments,
-      timestamp: props.timestamp,
-      text: ""
-    };
-  }
+  state = {
+    text: ""
+  };
 
   handleChanges = e => {
-    console.log(this.state);
     this.setState({
       text: e.target.value
     });
   };
 
-  addNewComment = (e, i) => {
+  addNewComment = e => {
     e.preventDefault();
-
-    const newComment = {
-      username: localStorage.getItem("user"),
-      text: this.state.text
-    };
-    this.setState({
-      comments: [...this.state.comments, newComment],
-      timestamp: this.state.timestamp,
-      text: ""
-    });
+    return null;
   };
 
   render() {
     return (
       <div className="comments">
-        {this.state.comments.map((input, index) => (
-          <Comment key={index} info={input} />
+        {this.props.comments.map(comment => (
+          <Comment key={comment.id} comment={comment} />
         ))}
-        <p className="timestamp">{this.state.timestamp}</p>
+        <p className="timestamp">10 minutes ago</p>
         <form onSubmit={this.addNewComment}>
           <input
             type="text"

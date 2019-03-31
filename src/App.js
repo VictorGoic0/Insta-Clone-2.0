@@ -1,18 +1,10 @@
-import React, { Component } from 'react';
-import './App.css';
-import PostsPage from './components/PostContainer/PostsPage';
-import authenticate from './components/Authentication/authenticate';
-import Login from './components/Login/Login';
+import React, { Component } from "react";
+import "./App.css";
+import PostsPage from "./components/PostContainer/PostsPage";
+import authenticate from "./components/Authentication/authenticate";
+import Login from "./components/Login/Login";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      search: ''
-    }
-  }
-
   render() {
     return (
       <div className="App">
@@ -22,4 +14,4 @@ class App extends Component {
   }
 }
 
-export default authenticate(App)(Login)
+export default authenticate(App)(Login);
