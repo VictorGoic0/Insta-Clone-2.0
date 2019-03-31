@@ -28,6 +28,12 @@ class CommentSection extends Component {
   addNewComment = (e, comment) => {
     e.preventDefault();
     this.props.addComment(comment);
+    this.setState(prevState => ({
+      comment: {
+        ...prevState.comment,
+        text: ""
+      }
+    }));
   };
 
   render() {
@@ -40,7 +46,7 @@ class CommentSection extends Component {
         <form onSubmit={e => this.addNewComment(e, this.state.comment)}>
           <input
             type="text"
-            value={this.state.text}
+            value={this.state.comment.text}
             onChange={this.handleChanges}
             placeholder="Add a comment..."
             required

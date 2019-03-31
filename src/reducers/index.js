@@ -14,6 +14,9 @@ import {
   EDIT_POST,
   EDIT_POST_SUCCESS,
   EDIT_POST_FAILURE,
+  ADD_COMMENT,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAILURE,
   SEARCH
 } from "../actions";
 
@@ -25,6 +28,7 @@ const initialState = {
   fetchingPosts: false,
   fetchingPost: false,
   addingPost: false,
+  addingComment: false,
   updatingPost: false,
   deletingPost: false,
   error: null
@@ -126,6 +130,27 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         editingPost: false,
+        error: action.payload
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        addingComment: true,
+        error: null
+      };
+    case ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        addingComment: false,
+        post: {
+          ...state.post,
+          comments: [...state.post.comments, action.payload]
+        }
+      };
+    case ADD_COMMENT_FAILURE:
+      return {
+        ...state,
+        addingComment: false,
         error: action.payload
       };
     case SEARCH:
