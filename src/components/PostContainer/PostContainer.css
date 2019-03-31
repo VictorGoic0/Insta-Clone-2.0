@@ -47,7 +47,9 @@
   width: 100%;
 }
 
-.post-footer h3, h4, p {
+.post-footer h3,
+h4,
+p {
   padding-top: 12px;
 }
 

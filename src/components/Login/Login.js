@@ -1,18 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import "./Login.css";
 
-class Login extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      userText: "",
-      passText: ""
-    };
-  }
+class Login extends Component {
+  state = {
+    user: {
+      username: "",
+      password: ""
+    }
+  };
 
   signIn = e => {
-    localStorage.setItem("user", this.state.userText);
-    localStorage.setItem("password", this.state.passText);
+    localStorage.setItem("user", this.state.user.username);
     localStorage.setItem(
       "token",
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOGVhODU0MjcyNDdkMDAyMTEyMjBmMCIsImlhdCI6MTU1Mjg1NTcwNiwiZXhwIjoxNTYxNDk1NzA2fQ.w0SHf9GxwzntBEfvdM0PusLz_H-4uGT7AqO_d3EM2t0"
@@ -23,7 +21,10 @@ class Login extends React.Component {
     console.log(this.state);
 
     this.setState({
-      [e.target.name]: e.target.value
+      user: {
+        ...this.state.user,
+        [e.target.name]: e.target.value
+      }
     });
   };
 
@@ -34,15 +35,15 @@ class Login extends React.Component {
         <form onSubmit={this.signIn}>
           <input
             type="text"
-            value={this.state.userText}
-            name="userText"
+            value={this.state.user.username}
+            name="username"
             onChange={this.handleChanges}
             placeholder="Username"
           />
           <input
-            type="text"
-            value={this.state.passText}
-            name="passText"
+            type="password"
+            value={this.state.user.password}
+            name="password"
             onChange={this.handleChanges}
             placeholder="Password"
           />
