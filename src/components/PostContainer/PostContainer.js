@@ -11,16 +11,16 @@ class PostContainer extends Component {
   }
 
   render() {
-    const { posts, fetchingPosts } = this.props;
+    const { posts, fetchingPosts, searchedPosts, searchInput } = this.props;
 
     if (fetchingPosts) {
       return <div className="loading">Loading...</div>;
     }
     return (
       <div className="post-container">
-        {posts.map(post => (
-          <Post post={post} key={post.id} />
-        ))}
+        {searchInput.length > 0
+          ? searchedPosts.map(post => <Post post={post} key={post.id} />)
+          : posts.map(post => <Post post={post} key={post.id} />)}
       </div>
     );
   }
@@ -28,6 +28,8 @@ class PostContainer extends Component {
 
 const mapStateToProps = state => ({
   posts: state.posts,
+  searchedPosts: state.searchedPosts,
+  searchInput: state.searchInput,
   fetchingPosts: state.fetchingPosts,
   error: state.error
 });
