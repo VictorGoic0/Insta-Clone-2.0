@@ -8,7 +8,7 @@ export const GET_POSTS_FAILURE = "GET_POSTS_FAILURE";
 export const getPosts = () => dispatch => {
   dispatch({ type: GET_POSTS });
   axios
-    .get("http://localhost:5000/api/posts/")
+    .get("https://goico-insta-backend.herokuapp.com/api/posts/")
     .then(res => {
       console.log(res);
       dispatch({ type: GET_POSTS_SUCCESS, payload: res.data });
@@ -27,7 +27,7 @@ export const GET_POST_FAILURE = "GET_POST_FAILURE";
 export const getPost = id => dispatch => {
   dispatch({ type: GET_POST });
   axios
-    .get(`http://localhost:5000/api/posts/${id}`)
+    .get(`https://goico-insta-backend.herokuapp.com/api/posts/${id}`)
     .then(res => {
       console.log(res);
       dispatch({ type: GET_POST_SUCCESS, payload: res.data });
@@ -46,7 +46,7 @@ export const ADD_POST_FAILURE = "ADD_POST_FAILURE";
 export const addPost = post => dispatch => {
   dispatch({ type: ADD_POST });
   axios
-    .post("http://localhost:5000/api/posts/", post)
+    .post("https://goico-insta-backend.herokuapp.com/api/posts/", post)
     .then(res => {
       console.log(res);
       dispatch({ type: ADD_POST_SUCCESS, payload: res.data });
@@ -65,7 +65,7 @@ export const DELETE_POST_FAILURE = "DELETE_POST_FAILURE";
 export const deletePost = id => dispatch => {
   dispatch({ type: DELETE_POST });
   axios
-    .delete(`http://localhost:5000/api/posts/${id}`)
+    .delete(`https://goico-insta-backend.herokuapp.com/api/posts/${id}`)
     .then(res => {
       console.log(res);
       dispatch({ type: DELETE_POST_SUCCESS, payload: res.data });
@@ -84,7 +84,7 @@ export const EDIT_POST_FAILURE = "EDIT_POST_FAILURE";
 export const editPost = post => dispatch => {
   dispatch({ type: EDIT_POST });
   axios
-    .put(`http://localhost:5000/api/posts/${post.id}`, post)
+    .put(`https://goico-insta-backend.herokuapp.com/api/posts/${post.id}`, post)
     .then(res => {
       console.log(res);
       dispatch({ type: EDIT_POST_SUCCESS, payload: res.data });
@@ -103,7 +103,9 @@ export const addComment = comment => dispatch => {
   dispatch({ type: ADD_COMMENT });
   axios
     .post(
-      `http://localhost:5000/api/posts/${comment.post_id}/comments`,
+      `https://goico-insta-backend.herokuapp.com/api/posts/${
+        comment.post_id
+      }/comments`,
       comment
     )
     .then(res => {
