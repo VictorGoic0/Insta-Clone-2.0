@@ -75,3 +75,10 @@ p {
 .logo:hover {
   cursor: pointer;
 }
+
+.singular-post-container {
+  width: 604px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+}

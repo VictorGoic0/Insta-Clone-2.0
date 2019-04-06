@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { getPost, deletePost } from "../../actions";
 import { connect } from "react-redux";
 import CommentSection from "../CommentSection/CommentSection";
@@ -29,7 +28,7 @@ class SingularPost extends Component {
     return (
       <>
         <SearchBar />
-        <div className="post-container">
+        <div className="singular-post-container">
           <div className="post">
             <div className="post-header">
               <img

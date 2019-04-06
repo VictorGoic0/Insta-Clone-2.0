@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SearchBar.css";
 import { connect } from "react-redux";
 import { searchBar } from "../../actions";
+import { Link } from "react-router-dom";
 
 class SearchBar extends Component {
   state = {
@@ -28,7 +29,9 @@ class SearchBar extends Component {
       <div className="searchbar">
         <div className="searchbarimg">
           <img src="/images/igcameralogo.png" alt="igcamera" />
-          <img src="/images/iglogo.png" alt="iglogo" />
+          <Link to="/">
+            <img src="/images/iglogo.png" alt="iglogo" />
+          </Link>
         </div>
         <form onSubmit={this.searchSubmit}>
           <input
