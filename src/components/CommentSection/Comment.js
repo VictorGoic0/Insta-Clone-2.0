@@ -6,7 +6,9 @@ const Comment = props => {
   const { thumbnailUrl, username, text } = props.comment;
   return (
     <div className="comment">
-      {thumbnailUrl ? <img src={thumbnailUrl} className="thumbnail" /> : null}
+      {thumbnailUrl ? (
+        <img src={thumbnailUrl} className="thumbnail" alt="profile thumbnail" />
+      ) : null}
       <h4>{username}</h4>
       <p>{text}</p>
     </div>

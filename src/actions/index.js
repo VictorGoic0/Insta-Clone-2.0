@@ -123,3 +123,39 @@ export const SEARCH = "SEARCH";
 export const searchBar = search => {
   return { type: SEARCH, payload: search };
 };
+
+export const SIGN_UP = "SIGN_UP";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+
+export const signUp = userInfo => dispatch => {
+  dispatch({ type: SIGN_UP });
+  axios
+    .post("https://goico-insta-backend.herokuapp.com/auth/register", userInfo)
+    .then(res => {
+      dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.token });
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userID", res.data.userID);
+    })
+    .catch(err => {
+      dispatch({ type: SIGN_UP_FAILURE, payload: err.message });
+    });
+};
+
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
+export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
+
+export const toggleSignedIn = userInfo => dispatch => {
+  dispatch({ type: SIGN_IN });
+  axios
+    .post("https://goico-insta-backend.herokuapp.com/auth/login", userInfo)
+    .then(res => {
+      dispatch({ type: SIGN_IN_SUCCESS, payload: res.data.token });
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userID", res.data.userID);
+    })
+    .catch(err => {
+      dispatch({ type: SIGN_IN_FAILURE, payload: err.message });
+    });
+};

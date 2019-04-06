@@ -2,12 +2,9 @@ import React from "react";
 
 const authenticate = FirstComponent => SecondComponent => {
   return class extends React.Component {
-    constructor() {
-      super();
-      this.state = {
-        loggedIn: false
-      };
-    }
+    state = {
+      loggedIn: false
+    };
 
     componentDidMount() {
       if (localStorage.getItem("token")) {
