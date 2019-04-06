@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { getPost, deletePost } from "../../actions";
 import { connect } from "react-redux";
 import CommentSection from "../CommentSection/CommentSection";
+import SearchBar from "../SearchBar/SearchBar";
 import "./PostContainer.css";
 
 class SingularPost extends Component {
   componentDidMount() {
-    this.props.getPost(this.props.match.params.id);
+    if (Number(this.props.match.params.id) !== this.props.post.id) {
+      this.props.getPost(this.props.match.params.id);
+    }
   }
 
   render() {
@@ -24,33 +27,36 @@ class SingularPost extends Component {
       return <div>Loading...</div>;
     }
     return (
-      <div className="post-container">
-        <div className="post">
-          <div className="post-header">
-            <img
-              className="thumbnail"
-              src={thumbnailUrl}
-              alt="profile thumbnail"
-            />
-            <h2>{username}</h2>
-          </div>
-          <img className="post-img" src={imageUrl} alt="post" />
-          <div className="post-footer">
-            <img
-              src="https://img.icons8.com/windows/32/000000/like.png"
-              alt="heart"
-              className="logo"
-            />
-            <img
-              src="https://img.icons8.com/windows/32/000000/speech-bubble.png"
-              alt="comment"
-              className="logo"
-            />
-            <h3>{likes} likes</h3>
-            <CommentSection post_id={id} comments={comments} />
+      <>
+        <SearchBar />
+        <div className="post-container">
+          <div className="post">
+            <div className="post-header">
+              <img
+                className="thumbnail"
+                src={thumbnailUrl}
+                alt="profile thumbnail"
+              />
+              <h2>{username}</h2>
+            </div>
+            <img className="post-img" src={imageUrl} alt="post" />
+            <div className="post-footer">
+              <img
+                src="https://img.icons8.com/windows/32/000000/like.png"
+                alt="heart"
+                className="logo"
+              />
+              <img
+                src="https://img.icons8.com/windows/32/000000/speech-bubble.png"
+                alt="comment"
+                className="logo"
+              />
+              <h3>{likes} likes</h3>
+              <CommentSection post_id={id} comments={comments} />
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

@@ -7,7 +7,9 @@ import PropTypes from "prop-types";
 
 class PostContainer extends Component {
   componentDidMount() {
-    this.props.getPosts();
+    if (this.props.posts.length < 1) {
+      this.props.getPosts();
+    }
   }
 
   render() {
