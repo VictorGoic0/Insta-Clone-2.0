@@ -146,7 +146,7 @@ export const SIGN_IN = "SIGN_IN";
 export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
 export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
 
-export const toggleSignedIn = userInfo => dispatch => {
+export const signIn = userInfo => dispatch => {
   dispatch({ type: SIGN_IN });
   axios
     .post("https://goico-insta-backend.herokuapp.com/auth/login", userInfo)
