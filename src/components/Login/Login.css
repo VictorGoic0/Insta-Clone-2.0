@@ -58,12 +58,16 @@
 
 .login h3 {
   margin: 60px auto 0px auto;
-  color: #002d75;
+  color: black;
   font-size: 2.2rem;
   font-weight: normal;
 }
 
-.login h3:hover {
+.login span {
+  color: #002d75;
+}
+
+.login span:hover {
   text-decoration: underline;
   cursor: pointer;
 }

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import "./PostContainer.css";
+import SearchBar from "../SearchBar/SearchBar";
 import { getPost, deletePost } from "../../actions";
+import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import CommentSection from "../CommentSection/CommentSection";
-import SearchBar from "../SearchBar/SearchBar";
-import "./PostContainer.css";
 
 class SingularPost extends Component {
   componentDidMount() {
@@ -23,7 +24,14 @@ class SingularPost extends Component {
       comments
     } = this.props.post;
     if (fetchingPost || id === undefined) {
-      return <div>Loading...</div>;
+      return (
+        <>
+          <SearchBar />
+          <div className="loading">
+            <Loader type="Oval" color="#0a4e8a" height="120" width="80" />
+          </div>
+        </>
+      );
     }
     return (
       <>

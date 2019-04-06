@@ -130,7 +130,7 @@ export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 
 export const signUp = userInfo => dispatch => {
   dispatch({ type: SIGN_UP });
-  axios
+  return axios
     .post("https://goico-insta-backend.herokuapp.com/auth/register", userInfo)
     .then(res => {
       dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.token });

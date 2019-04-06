@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./PostContainer.css";
+import Loader from "react-loader-spinner";
 import Post from "./Post";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions";
@@ -16,7 +16,11 @@ class PostContainer extends Component {
     const { posts, fetchingPosts, searchedPosts, searchInput } = this.props;
 
     if (fetchingPosts) {
-      return <div className="loading">Loading...</div>;
+      return (
+        <div className="loading">
+          <Loader type="Oval" color="#0a4e8a" height="120" width="80" />
+        </div>
+      );
     }
     return (
       <div className="post-container">

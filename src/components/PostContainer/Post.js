@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import CommentSection from "../CommentSection/CommentSection";
-import "./PostContainer.css";
 
 class Post extends Component {
   render() {

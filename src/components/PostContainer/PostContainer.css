@@ -76,6 +76,12 @@ p {
   cursor: pointer;
 }
 
+.loading {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
 .singular-post-container {
   width: 604px;
   display: flex;
