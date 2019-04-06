@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <div className="App">
         <PrivateRoute exact path="/" component={PostsPage} />
-        <Route path="/posts/:id" component={SingularPost} />
+        <PrivateRoute path="/posts/:id" component={SingularPost} />
         <Route path="/login/" component={Login} />
       </div>
     );

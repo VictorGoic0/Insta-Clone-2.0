@@ -38,7 +38,7 @@ const initialState = {
   updatingPost: false,
   deletingPost: false,
   signingIn: false,
-  signedIn: false,
+  signedIn: localStorage.getItem("token") ? true : false,
   error: null
 };
 
