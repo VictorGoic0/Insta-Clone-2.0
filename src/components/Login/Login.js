@@ -11,14 +11,19 @@ class Login extends Component {
     }
   };
 
-  signIn = e => {
+  signIn = (e, userInfo) => {
     e.preventDefault();
-    this.props.signIn(this.state.user);
+    this.props
+      .signIn(userInfo)
+      .then(res => {
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   handleChanges = e => {
-    console.log(this.state);
-
     this.setState({
       user: {
         ...this.state.user,
@@ -31,7 +36,7 @@ class Login extends Component {
     return (
       <div className="login">
         <img src="/Images/iglogo.png" alt="Instagram" />
-        <form onSubmit={this.signIn}>
+        <form onSubmit={e => this.signIn(e, this.state.user)}>
           <input
             type="text"
             value={this.state.user.username}

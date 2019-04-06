@@ -148,7 +148,7 @@ export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
 
 export const signIn = userInfo => dispatch => {
   dispatch({ type: SIGN_IN });
-  axios
+  return axios
     .post("https://goico-insta-backend.herokuapp.com/auth/login", userInfo)
     .then(res => {
       dispatch({ type: SIGN_IN_SUCCESS, payload: res.data.token });
