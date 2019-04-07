@@ -101,7 +101,7 @@ export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
 
 export const addComment = comment => dispatch => {
   dispatch({ type: ADD_COMMENT });
-  axios
+  return axios
     .post(
       `https://goico-insta-backend.herokuapp.com/api/posts/${
         comment.post_id
@@ -109,12 +109,12 @@ export const addComment = comment => dispatch => {
       comment
     )
     .then(res => {
-      console.log(res);
       dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
       dispatch({ type: ADD_COMMENT_FAILURE, payload: err.message });
+      return err;
     });
 };
 

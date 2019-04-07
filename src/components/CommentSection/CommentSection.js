@@ -9,7 +9,7 @@ class CommentSection extends Component {
   state = {
     comment: {
       post_id: this.props.post_id,
-      user_id: 15,
+      user_id: localStorage.getItem("userID"),
       text: ""
     }
   };
@@ -22,18 +22,23 @@ class CommentSection extends Component {
         text: e.target.value
       }
     }));
-    console.log(this.state);
   };
 
   addNewComment = (e, comment) => {
     e.preventDefault();
-    this.props.addComment(comment);
-    this.setState(prevState => ({
-      comment: {
-        ...prevState.comment,
-        text: ""
-      }
-    }));
+    this.props
+      .addComment(comment)
+      .then(res => {
+        this.setState(prevState => ({
+          comment: {
+            ...prevState.comment,
+            text: ""
+          }
+        }));
+      })
+      .catch(err => {
+        alert(`Comment failed to post ${err}. Please try again.`);
+      });
   };
 
   render() {

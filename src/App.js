@@ -11,7 +11,7 @@ const App = () => {
     <>
       <PrivateRoute exact path="/" component={PostsPage} />
       <PrivateRoute path="/posts/:id" component={SingularPost} />
-      <Route path="/login/" component={Login} />
+      <Route path="/login" component={Login} />
     </>
   );
 };
