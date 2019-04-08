@@ -48,9 +48,9 @@
 }
 
 .post-footer h3,
-h4,
-p {
-  padding-top: 12px;
+.post-footer h4,
+.post-footer p {
+  padding-top: 8px;
 }
 
 .post form {
