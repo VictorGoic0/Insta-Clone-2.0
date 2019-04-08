@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Insta-Clone
 
-## Available Scripts
+## Dependencies Used
 
-In the project directory, you can run:
+- React
+- React Router
+- React Loader Spinner
+- Redux
+- React Redux
+- Redux Logger
+- Redux Thunk
+- Axios
 
-### `npm start`
+## Running The Project
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Deployment Link** https://victor-insta-clone.netlify.com/
+  If you would like to run this project locally, `cd` into the repository and run `yarn`. This will install the needed dependencies. Next, run `yarn start`, which will initialize the application in `localhost:3000`.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Restrictions
 
-### `npm test`
+If you would like to make a request to the profiles endpoint, a valid **JSON web token** is required in your request headers.authorization. For posts and comments, making a **GET** request does not require a **JSON web token**, but **POST, DEL,** and **PUT** requests do.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Description
 
-### `npm run build`
+This project is a React web application meant to imitate the functionality and UI of Instagram. The purpose of this project was to test out some of the things I have learned in Frontend and Backend development. The data being rendered is pulled in from an API deployed on `Heroku`. User registration, login, post and comment creation, deletion, fetching, or editing, are all handled there. This project was deployed on `Netlify`.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- The application is run using React, a library for building out User Interfaces.
+- React Router is a React dependency for handling Client Side routing.
+- React Loader Spinner is a React dependency for creating loader spinners.
+- Redux is a state-management library, which is useful for managing state as an application grows.
+- Redux Thunk was used for creating asynchronous redux action creators.
+- Redux Logger was used for logging redux actions, which is useful for troubleshooting.
+- Axios is a promise-based HTTP client. It was used to make all requests to my API.
