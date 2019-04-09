@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #efefef;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .searchbar input {
@@ -24,10 +24,16 @@
   margin: 0 20px;
 }
 
+.searchbar .profile {
+  height: 50px;
+}
+
 .searchbarimg {
   display: flex;
+  align-items: center;
 }
 
 .searchbarlogos {
-  margin: 0 90px;
+  display: flex;
+  align-items: center;
 }

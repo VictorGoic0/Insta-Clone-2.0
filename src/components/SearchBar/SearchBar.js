@@ -42,7 +42,9 @@ class SearchBar extends Component {
           />
         </form>
         <div className="searchbarlogos">
+          <img src="/images/compass.svg" alt="compass" />
           <img src="/images/searcheart.png" alt="heart" />
+          <img src="/images/profile.svg" className="profile" alt="profile" />
         </div>
       </div>
     );
