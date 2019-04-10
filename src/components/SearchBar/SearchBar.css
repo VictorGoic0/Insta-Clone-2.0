@@ -28,6 +28,10 @@
   height: 50px;
 }
 
+.searchbar .profile:hover {
+  cursor: pointer;
+}
+
 .searchbarimg {
   display: flex;
   align-items: center;
