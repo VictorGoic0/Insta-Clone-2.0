@@ -20,7 +20,7 @@ class Login extends Component {
         this.props.history.push("/");
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -32,7 +32,7 @@ class Login extends Component {
         this.props.history.push("/");
       })
       .catch(err => {
-        console.log(err);
+        alert(err);
       });
   };
 

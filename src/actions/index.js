@@ -109,7 +109,11 @@ export const addComment = comment => dispatch => {
       comment
     )
     .then(res => {
-      dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
+      dispatch({
+        type: ADD_COMMENT_SUCCESS,
+        payload: res.data,
+        post_id: comment.post_id
+      });
     })
     .catch(err => {
       console.log(err);

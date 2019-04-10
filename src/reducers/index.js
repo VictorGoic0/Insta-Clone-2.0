@@ -154,15 +154,50 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         addingComment: false,
-        post: {
-          ...state.post,
-          comments: [...state.post.comments, action.payload]
-        }
+        post: state.post.id
+          ? {
+              ...state.post,
+              comments: [...state.post.comments, action.payload]
+            }
+          : state.post,
+        posts: state.posts.map(post => {
+          if (post.id !== action.post_id) {
+            return post;
+          } else {
+            post.comments = [...post.comments, action.payload];
+            return post;
+          }
+        })
       };
     case ADD_COMMENT_FAILURE:
       return {
         ...state,
         addingComment: false,
+        error: action.payload
+      };
+    case GET_COMMENTS:
+      return {
+        ...state,
+        fetchingComments: true,
+        error: null
+      };
+    case GET_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        fetchingComments: false,
+        posts: state.posts.map(post => {
+          if (post.id !== action.id) {
+            return post;
+          } else {
+            post.comments = action.payload;
+            return post;
+          }
+        })
+      };
+    case GET_COMMENTS_FAILURE:
+      return {
+        ...state,
+        fetchingComments: false,
         error: action.payload
       };
     case SEARCH:
@@ -192,29 +227,23 @@ const reducer = (state = initialState, action) => {
         signedIn: false,
         error: action.payload
       };
-    case GET_COMMENTS:
+    case SIGN_UP:
       return {
         ...state,
-        fetchingComments: true,
+        signingIn: true,
         error: null
       };
-    case GET_COMMENTS_SUCCESS:
+    case SIGN_UP_SUCCESS:
       return {
         ...state,
-        fetchingComments: false,
-        posts: state.posts.map(post => {
-          if (post.id !== action.id) {
-            return post;
-          } else {
-            post.comments = action.payload;
-            return post;
-          }
-        })
+        signingIn: false,
+        signedIn: true
       };
-    case GET_COMMENTS_FAILURE:
+    case SIGN_UP_FAILURE:
       return {
         ...state,
-        fetchingComments: false,
+        signingIn: false,
+        signedIn: false,
         error: action.payload
       };
 
