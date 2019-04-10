@@ -59,7 +59,11 @@ class SingularPost extends Component {
                 className="logo"
               />
               <h3>{likes} likes</h3>
-              <CommentSection post_id={id} comments={comments} />
+              <CommentSection
+                post_id={id}
+                comments={comments}
+                pathID={this.props.match.params.id}
+              />
             </div>
           </div>
         </div>
