@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Loader from "react-loader-spinner";
 import Post from "./Post";
+import PostForm from "./PostForm";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions";
 import PropTypes from "prop-types";
@@ -24,6 +25,7 @@ class PostContainer extends Component {
     }
     return (
       <div className="post-container">
+        <PostForm />
         {searchInput.length > 0
           ? searchedPosts.map(post => <Post post={post} key={post.id} />)
           : posts.map(post => <Post post={post} key={post.id} />)}

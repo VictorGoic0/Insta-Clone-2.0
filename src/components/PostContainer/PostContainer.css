@@ -88,3 +88,16 @@
   flex-direction: column;
   margin: 20px auto;
 }
+
+.postform {
+  margin: 0 auto 20px auto;
+  width: 100%;
+}
+
+.postform .addpost {
+  width: 100%;
+}
+
+.postform .addpost.area {
+  height: 80px;
+}
