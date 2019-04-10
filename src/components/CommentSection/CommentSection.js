@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./CommentSection.css";
 import Comment from "./Comment";
 import { connect } from "react-redux";
-import { addComment } from "../../actions";
+import { addComment, getComments } from "../../actions";
 import PropTypes from "prop-types";
 
 class CommentSection extends Component {
@@ -47,6 +47,12 @@ class CommentSection extends Component {
         {this.props.comments.map(comment => (
           <Comment key={comment.id} comment={comment} />
         ))}
+        <p
+          className="showmore"
+          onClick={() => this.props.getComments(this.props.post_id)}
+        >
+          Show More Comments
+        </p>
         <p className="timestamp">10 minutes ago</p>
         <form onSubmit={e => this.addNewComment(e, this.state.comment)}>
           <input
@@ -73,5 +79,5 @@ CommentSection.propTypes = {
 
 export default connect(
   null,
-  { addComment }
+  { addComment, getComments }
 )(CommentSection);

@@ -23,7 +23,10 @@ import {
   SIGN_UP_FAILURE,
   SIGN_IN,
   SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE
+  SIGN_IN_FAILURE,
+  GET_COMMENTS,
+  GET_COMMENTS_SUCCESS,
+  GET_COMMENTS_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -33,6 +36,7 @@ const initialState = {
   searchInput: "",
   fetchingPosts: false,
   fetchingPost: false,
+  fetchingComments: false,
   addingPost: false,
   addingComment: false,
   updatingPost: false,
@@ -188,23 +192,29 @@ const reducer = (state = initialState, action) => {
         signedIn: false,
         error: action.payload
       };
-    case SIGN_UP:
+    case GET_COMMENTS:
       return {
         ...state,
-        signingIn: true,
+        fetchingComments: true,
         error: null
       };
-    case SIGN_UP_SUCCESS:
+    case GET_COMMENTS_SUCCESS:
       return {
         ...state,
-        signingIn: false,
-        signedIn: true
+        fetchingComments: false,
+        posts: state.posts.map(post => {
+          if (post.id !== action.id) {
+            return post;
+          } else {
+            post.comments = action.payload;
+            return post;
+          }
+        })
       };
-    case SIGN_UP_FAILURE:
+    case GET_COMMENTS_FAILURE:
       return {
         ...state,
-        signingIn: false,
-        signedIn: false,
+        fetchingComments: false,
         error: action.payload
       };
 

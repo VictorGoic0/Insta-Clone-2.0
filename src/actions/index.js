@@ -159,3 +159,22 @@ export const signIn = userInfo => dispatch => {
       dispatch({ type: SIGN_IN_FAILURE, payload: err.message });
     });
 };
+
+export const GET_COMMENTS = "GET_COMMENTS";
+export const GET_COMMENTS_SUCCESS = "GET_COMMENTS_SUCCESS";
+export const GET_COMMENTS_FAILURE = "GET_COMMENTS_FAILURE";
+
+// Requests the entire posts' comments array
+export const getComments = id => dispatch => {
+  dispatch({ type: GET_COMMENTS });
+  axios
+    .get(`https://goico-insta-backend.herokuapp.com/api/posts/${id}/comments`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: GET_COMMENTS_SUCCESS, payload: res.data, id });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: GET_COMMENTS_FAILURE, payload: err.message });
+    });
+};

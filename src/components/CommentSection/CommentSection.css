@@ -22,3 +22,11 @@
 .comments {
   width: 97%;
 }
+
+.showmore {
+  color: #000086;
+}
+
+.showmore:hover {
+  cursor: pointer;
+}
