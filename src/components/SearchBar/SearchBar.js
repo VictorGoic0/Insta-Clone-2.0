@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./SearchBar.css";
 import { connect } from "react-redux";
 import { searchBar } from "../../actions";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class SearchBar extends Component {
   state = {
@@ -22,6 +22,12 @@ class SearchBar extends Component {
 
   searchSubmit = e => {
     e.preventDefault();
+  };
+
+  logOut = () => {
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
+    this.props.history.push("/login");
   };
 
   render() {
@@ -44,14 +50,21 @@ class SearchBar extends Component {
         <div className="searchbarlogos">
           <img src="/images/compass.svg" alt="compass" />
           <img src="/images/searcheart.png" alt="heart" />
-          <img src="/images/profile.svg" className="profile" alt="profile" />
+          <img
+            src="/images/profile.svg"
+            className="profile"
+            alt="profile"
+            onClick={this.logOut}
+          />
         </div>
       </div>
     );
   }
 }
 
+const SearchBarRouter = withRouter(SearchBar);
+
 export default connect(
   null,
   { searchBar }
-)(SearchBar);
+)(SearchBarRouter);
