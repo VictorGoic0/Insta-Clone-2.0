@@ -83,10 +83,29 @@
 }
 
 .singular-post-container {
-  width: 604px;
+  width: 1000px;
   display: flex;
-  flex-direction: column;
   margin: 20px auto;
+}
+
+.singular-post-container .post {
+  width: 350px;
+  margin-left: 20px;
+}
+
+.singular-post-container .post-image {
+  width: 600px;
+}
+
+.singular-post-container .post-image .post-img {
+  width: 100%;
+}
+
+.singular-post-container .post .description {
+  padding-left: 4px;
+  margin: 0 10px 0 14px;
+  border-bottom: 1px solid #e7e7e7;
+  padding-bottom: 20px;
 }
 
 .postform {

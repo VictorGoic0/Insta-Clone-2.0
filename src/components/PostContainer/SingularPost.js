@@ -37,6 +37,9 @@ class SingularPost extends Component {
       <>
         <SearchBar />
         <div className="singular-post-container">
+          <div className="post-image">
+            <img className="post-img" src={imageUrl} alt="post" />
+          </div>
           <div className="post">
             <div className="post-header">
               <img
@@ -47,9 +50,8 @@ class SingularPost extends Component {
               <h2>{username}</h2>
             </div>
             {this.props.post.description ? (
-              <p>{this.props.post.description}</p>
+              <p className="description">{this.props.post.description}</p>
             ) : null}
-            <img className="post-img" src={imageUrl} alt="post" />
             <div className="post-footer">
               <img
                 src="https://img.icons8.com/windows/32/000000/like.png"
