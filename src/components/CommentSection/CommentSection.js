@@ -11,7 +11,8 @@ class CommentSection extends Component {
       post_id: this.props.post_id,
       user_id: localStorage.getItem("userID"),
       text: ""
-    }
+    },
+    showMore: false
   };
 
   handleChanges = e => {
@@ -41,20 +42,32 @@ class CommentSection extends Component {
       });
   };
 
+  getComments = id => {
+    this.props.getComments(id);
+    this.toggleShowMore();
+  };
+
+  toggleShowMore = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      showMore: true
+    }));
+  };
+
   render() {
     return (
       <div className="comments">
         {this.props.comments.map(comment => (
           <Comment key={comment.id} comment={comment} />
         ))}
-        {this.props.pathID ? null : (
+        {this.props.pathID ? null : !this.state.showMore ? (
           <p
             className="showmore"
-            onClick={() => this.props.getComments(this.props.post_id)}
+            onClick={() => this.getComments(this.props.post_id)}
           >
             Show More Comments
           </p>
-        )}
+        ) : null}
         <p className="timestamp">10 minutes ago</p>
         <form onSubmit={e => this.addNewComment(e, this.state.comment)}>
           <input

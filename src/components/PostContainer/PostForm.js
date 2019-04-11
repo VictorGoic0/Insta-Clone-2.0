@@ -27,7 +27,6 @@ class PostForm extends Component {
         [e.target.name]: e.target.value
       }
     }));
-    console.log(this.state);
   };
 
   createPost = (e, postInfo) => {
@@ -55,6 +54,7 @@ class PostForm extends Component {
                 value={post.imageUrl}
                 name="imageUrl"
               />
+              <button type="submit">Add Post</button>
             </>
           ) : (
             <input
