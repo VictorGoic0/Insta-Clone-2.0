@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import CommentSection from "../CommentSection/CommentSection";
 
 const Post = props => {
-  const { thumbnailUrl, username, id, imageUrl, likes, comments } = props.post;
+  const {
+    thumbnailUrl,
+    username,
+    id,
+    imageUrl,
+    likes,
+    comments,
+    showMore
+  } = props.post;
   return (
     <div className="post">
       <div className="post-header">
@@ -25,7 +33,7 @@ const Post = props => {
           className="logo"
         />
         <h3>{likes} likes</h3>
-        <CommentSection post_id={id} comments={comments} />
+        <CommentSection post_id={id} comments={comments} showMore={showMore} />
       </div>
     </div>
   );

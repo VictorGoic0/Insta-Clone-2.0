@@ -12,7 +12,7 @@ class CommentSection extends Component {
       user_id: localStorage.getItem("userID"),
       text: ""
     },
-    showMore: false
+    showMore: true
   };
 
   handleChanges = e => {
@@ -50,7 +50,7 @@ class CommentSection extends Component {
   toggleShowMore = () => {
     this.setState(prevState => ({
       ...prevState,
-      showMore: true
+      showMore: !prevState.showMore
     }));
   };
 
@@ -60,7 +60,7 @@ class CommentSection extends Component {
         {this.props.comments.map(comment => (
           <Comment key={comment.id} comment={comment} />
         ))}
-        {this.props.pathID ? null : !this.state.showMore ? (
+        {this.props.showMore && this.state.showMore ? (
           <p
             className="showmore"
             onClick={() => this.getComments(this.props.post_id)}
