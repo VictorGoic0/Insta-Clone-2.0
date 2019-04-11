@@ -83,21 +83,21 @@
 }
 
 .singular-post-container {
-  width: 1000px;
+  width: 1200px;
   display: flex;
   margin: 20px auto;
 }
 
 .singular-post-container .post {
   width: 350px;
-  margin-left: 20px;
+  margin: 0px 0px 0px 20px;
 }
 
 .singular-post-container .post-image {
-  width: 600px;
+  width: 800px;
 }
 
-.singular-post-container .post-image .post-img {
+.singular-post-container .post-image img {
   width: 100%;
 }
 

@@ -38,7 +38,7 @@ class SingularPost extends Component {
         <SearchBar />
         <div className="singular-post-container">
           <div className="post-image">
-            <img className="post-img" src={imageUrl} alt="post" />
+            <img src={imageUrl} alt="post" />
           </div>
           <div className="post">
             <div className="post-header">
