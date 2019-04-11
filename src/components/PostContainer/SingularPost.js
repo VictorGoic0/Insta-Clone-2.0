@@ -46,6 +46,9 @@ class SingularPost extends Component {
               />
               <h2>{username}</h2>
             </div>
+            {this.props.post.description ? (
+              <p>{this.props.post.description}</p>
+            ) : null}
             <img className="post-img" src={imageUrl} alt="post" />
             <div className="post-footer">
               <img

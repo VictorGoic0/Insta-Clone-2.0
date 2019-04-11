@@ -7,7 +7,8 @@ class PostForm extends Component {
     open: false,
     post: {
       description: "",
-      imageUrl: ""
+      imageUrl: "",
+      user_id: localStorage.getItem("userID")
     }
   };
 
@@ -32,6 +33,14 @@ class PostForm extends Component {
   createPost = (e, postInfo) => {
     e.preventDefault();
     this.props.addPost(postInfo);
+    this.setState(prevState => ({
+      ...prevState,
+      post: {
+        description: "",
+        imageUrl: "",
+        user_id: prevState.post.user_id
+      }
+    }));
   };
 
   render() {
