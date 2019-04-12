@@ -55,11 +55,16 @@ class CommentSection extends Component {
   };
 
   render() {
+    const { comments } = this.props;
     return (
       <div className="comments">
-        {this.props.comments.map(comment => (
-          <Comment key={comment.id} comment={comment} />
-        ))}
+        {this.state.showMore && comments.length > 4
+          ? comments
+              .slice(0, 4)
+              .map(comment => <Comment key={comment.id} comment={comment} />)
+          : comments.map(comment => (
+              <Comment key={comment.id} comment={comment} />
+            ))}
         {this.props.showMore && this.state.showMore ? (
           <p
             className="showmore"
