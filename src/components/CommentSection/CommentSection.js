@@ -58,7 +58,9 @@ class CommentSection extends Component {
     const { comments } = this.props;
     return (
       <div className="comments">
-        {this.state.showMore && comments.length > 4
+        {this.state.showMore &&
+        comments.length > 4 &&
+        this.props.path !== "/posts/:id"
           ? comments
               .slice(0, 4)
               .map(comment => <Comment key={comment.id} comment={comment} />)

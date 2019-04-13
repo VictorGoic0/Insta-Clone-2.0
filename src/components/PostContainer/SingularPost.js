@@ -67,7 +67,7 @@ class SingularPost extends Component {
               <CommentSection
                 post_id={id}
                 comments={comments}
-                pathID={this.props.match.params.id}
+                path={this.props.match.path}
               />
             </div>
           </div>
