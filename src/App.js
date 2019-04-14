@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./components/CSS/App.css";
 import { Route } from "react-router-dom";
 import PostsPage from "./components/PostContainer/PostsPage";
 import SingularPost from "./components/PostContainer/SingularPost";

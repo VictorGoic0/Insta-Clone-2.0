@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./PostContainer.css";
+import "../CSS/PostContainer.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { getPost, deletePost } from "../../actions";
 import Loader from "react-loader-spinner";

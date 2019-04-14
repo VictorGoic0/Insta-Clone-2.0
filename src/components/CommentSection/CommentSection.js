@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./CommentSection.css";
+import "../CSS/CommentSection.css";
 import Comment from "./Comment";
 import { connect } from "react-redux";
 import { addComment, getComments } from "../../actions";

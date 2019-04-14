@@ -61,6 +61,7 @@ class PostForm extends Component {
                 placeholder="Image URL here"
                 onChange={this.changeHandler}
                 value={post.imageUrl}
+                required
                 name="imageUrl"
               />
               <button type="submit">Add Post</button>

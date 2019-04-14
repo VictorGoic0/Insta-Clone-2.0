@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./SearchBar.css";
+import "../CSS/SearchBar.css";
 import { connect } from "react-redux";
 import { searchBar } from "../../actions";
 import { Link, withRouter } from "react-router-dom";
