@@ -1,9 +1,17 @@
 import React from "react";
+import { likePost } from "../../actions";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import CommentSection from "../CommentSection/CommentSection";
 
 const Post = props => {
-  const likePost = () => {};
+  const likePost = () => {
+    const like = {
+      user_id: localStorage.getItem("userID"),
+      post_id: id
+    };
+    props.likePost(like);
+  };
   const {
     thumbnailUrl,
     username,
@@ -41,4 +49,7 @@ const Post = props => {
   );
 };
 
-export default Post;
+export default connect(
+  null,
+  { likePost }
+)(Post);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../CSS/PostContainer.css";
 import SearchBar from "../SearchBar/SearchBar";
-import { getPost, deletePost } from "../../actions";
+import { getPost, deletePost, likePost } from "../../actions";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import CommentSection from "../CommentSection/CommentSection";
@@ -12,7 +12,13 @@ class SingularPost extends Component {
       this.props.getPost(this.props.match.params.id);
     }
   }
-  likePost = () => {};
+  likePost = () => {
+    const like = {
+      user_id: localStorage.getItem("userID"),
+      post_id: this.props.match.params.id
+    };
+    this.props.likePost(like);
+  };
 
   render() {
     const { fetchingPost, error } = this.props;
@@ -87,5 +93,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPost, deletePost }
+  { getPost, deletePost, likePost }
 )(SingularPost);
