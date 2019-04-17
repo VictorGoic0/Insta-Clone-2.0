@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CommentSection from "../CommentSection/CommentSection";
 
 const Post = props => {
+  const likePost = () => {};
   const {
     thumbnailUrl,
     username,
@@ -26,6 +27,7 @@ const Post = props => {
           src="https://img.icons8.com/windows/32/000000/like.png"
           alt="heart"
           className="logo"
+          onClick={likePost}
         />
         <img
           src="https://img.icons8.com/windows/32/000000/speech-bubble.png"

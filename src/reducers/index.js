@@ -26,7 +26,10 @@ import {
   SIGN_IN_FAILURE,
   GET_COMMENTS,
   GET_COMMENTS_SUCCESS,
-  GET_COMMENTS_FAILURE
+  GET_COMMENTS_FAILURE,
+  LIKE_POST,
+  LIKE_POST_SUCCESS,
+  LIKE_POST_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -40,6 +43,7 @@ const initialState = {
   addingPost: false,
   addingComment: false,
   updatingPost: false,
+  likingPost: false,
   deletingPost: false,
   signingIn: false,
   signedIn: localStorage.getItem("token") ? true : false,
@@ -244,6 +248,23 @@ const reducer = (state = initialState, action) => {
         ...state,
         signingIn: false,
         signedIn: false,
+        error: action.payload
+      };
+    case LIKE_POST:
+      return {
+        ...state,
+        likingPost: true,
+        error: null
+      };
+    case LIKE_POST_SUCCESS:
+      return {
+        ...state,
+        likingPost: false
+      };
+    case LIKE_POST_FAILURE:
+      return {
+        ...state,
+        likingPost: false,
         error: action.payload
       };
 

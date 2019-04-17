@@ -12,6 +12,7 @@ class SingularPost extends Component {
       this.props.getPost(this.props.match.params.id);
     }
   }
+  likePost = () => {};
 
   render() {
     const { fetchingPost, error } = this.props;
@@ -57,6 +58,7 @@ class SingularPost extends Component {
                 src="https://img.icons8.com/windows/32/000000/like.png"
                 alt="heart"
                 className="logo"
+                onClick={this.likePost}
               />
               <img
                 src="https://img.icons8.com/windows/32/000000/speech-bubble.png"

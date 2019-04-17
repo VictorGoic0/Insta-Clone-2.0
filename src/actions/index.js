@@ -182,3 +182,21 @@ export const getComments = id => dispatch => {
       dispatch({ type: GET_COMMENTS_FAILURE, payload: err.message });
     });
 };
+
+export const LIKE_POST = "LIKE_POST";
+export const LIKE_POST_SUCCESS = "LIKE_POST_SUCCESS";
+export const LIKE_POST_FAILURE = "LIKE_POST_FAILURE";
+
+export const likePost = info => dispatch => {
+  dispatch({ type: LIKE_POST });
+  axios
+    .post(`https://goico-insta-backend.herokuapp.com/api/likes`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: LIKE_POST_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: LIKE_POST_FAILURE, payload: err.message });
+    });
+};
