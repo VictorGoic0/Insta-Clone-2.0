@@ -190,7 +190,7 @@ export const LIKE_POST_FAILURE = "LIKE_POST_FAILURE";
 export const likePost = info => dispatch => {
   dispatch({ type: LIKE_POST });
   axios
-    .post(`https://goico-insta-backend.herokuapp.com/api/likes`)
+    .post(`https://goico-insta-backend.herokuapp.com/api/likes`, info)
     .then(res => {
       console.log(res);
       dispatch({ type: LIKE_POST_SUCCESS, payload: res.data });

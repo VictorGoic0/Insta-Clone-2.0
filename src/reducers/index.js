@@ -259,7 +259,19 @@ const reducer = (state = initialState, action) => {
     case LIKE_POST_SUCCESS:
       return {
         ...state,
-        likingPost: false
+        likingPost: false,
+        post:
+          state.post.id === action.payload.post_id
+            ? ((state.post.likes += 1), state.post)
+            : state.post,
+        posts: state.posts.map(post => {
+          if (post.id === action.payload.post_id) {
+            post.likes += 1;
+            return post;
+          } else {
+            return post;
+          }
+        })
       };
     case LIKE_POST_FAILURE:
       return {
