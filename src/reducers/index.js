@@ -61,7 +61,10 @@ const reducer = (state = initialState, action) => {
     case GET_POSTS_SUCCESS:
       return {
         ...state,
-        posts: action.payload,
+        posts: action.payload.map(post => {
+          post.likes = Number(post.likes);
+          return post;
+        }),
         fetchingPosts: false
       };
     case GET_POSTS_FAILURE:
@@ -79,7 +82,7 @@ const reducer = (state = initialState, action) => {
     case GET_POST_SUCCESS:
       return {
         ...state,
-        post: action.payload,
+        post: { ...action.payload, likes: Number(action.payload.likes) },
         fetchingPost: false
       };
     case GET_POST_FAILURE:
