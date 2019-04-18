@@ -31,7 +31,9 @@ class PostContainer extends Component {
           ? searchedPosts.map(post => (
               <Post post={post} key={post.id} likePost={this.props.likePost} />
             ))
-          : posts.map(post => <Post post={post} key={post.id} />)}
+          : posts.map(post => (
+              <Post post={post} key={post.id} likePost={this.props.likePost} />
+            ))}
       </div>
     );
   }

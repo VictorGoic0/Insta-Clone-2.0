@@ -119,7 +119,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         deletingPost: false,
-        posts: state.posts.filter(post => post._id !== action.payload._id)
+        posts: state.posts.filter(post => post.id !== action.payload.id)
       };
     case DELETE_POST_FAILURE:
       return {
@@ -139,7 +139,7 @@ const reducer = (state = initialState, action) => {
         editingPost: false,
         post: action.payload,
         posts: state.posts.map(post => {
-          if (post._id === action.payload._id) {
+          if (post.id === action.payload.id) {
             return action.payload;
           }
           return post;
@@ -171,8 +171,9 @@ const reducer = (state = initialState, action) => {
           if (post.id !== action.post_id) {
             return post;
           } else {
-            post.comments = [...post.comments, action.payload];
-            return post;
+            const newPost = { ...post };
+            newPost.comments = [...newPost.comments, action.payload];
+            return newPost;
           }
         })
       };
@@ -196,8 +197,9 @@ const reducer = (state = initialState, action) => {
           if (post.id !== action.post_id) {
             return post;
           } else {
-            post.comments = [...action.payload];
-            return post;
+            const newPost = { ...post };
+            newPost.comments = [...action.payload];
+            return newPost;
           }
         })
       };
@@ -265,12 +267,13 @@ const reducer = (state = initialState, action) => {
         likingPost: false,
         post:
           state.post.id === action.payload.post_id
-            ? ((state.post.likes += 1), state.post)
+            ? { ...state.post, likes: (state.post.likes += 1) }
             : state.post,
         posts: state.posts.map(post => {
           if (post.id === action.payload.post_id) {
-            post.likes += 1;
-            return post;
+            const newPost = { ...post };
+            newPost.likes += 1;
+            return newPost;
           } else {
             return post;
           }
