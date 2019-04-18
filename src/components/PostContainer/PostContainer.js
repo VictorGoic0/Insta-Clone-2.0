@@ -4,6 +4,7 @@ import Post from "./Post";
 import PostForm from "./PostForm";
 import { connect } from "react-redux";
 import { getPosts } from "../../actions";
+import { likePost } from "../../actions";
 import PropTypes from "prop-types";
 
 class PostContainer extends Component {
@@ -27,7 +28,9 @@ class PostContainer extends Component {
       <div className="post-container">
         <PostForm />
         {searchInput.length > 0
-          ? searchedPosts.map(post => <Post post={post} key={post.id} />)
+          ? searchedPosts.map(post => (
+              <Post post={post} key={post.id} likePost={this.props.likePost} />
+            ))
           : posts.map(post => <Post post={post} key={post.id} />)}
       </div>
     );
@@ -56,5 +59,5 @@ PostContainer.propTypes = {
 
 export default connect(
   mapStateToProps,
-  { getPosts }
+  { getPosts, likePost }
 )(PostContainer);

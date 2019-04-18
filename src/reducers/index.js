@@ -193,10 +193,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingComments: false,
         posts: state.posts.map(post => {
-          if (post.id !== action.id) {
+          if (post.id !== action.post_id) {
             return post;
           } else {
-            post.comments = action.payload;
+            post.comments = [...action.payload];
             return post;
           }
         })

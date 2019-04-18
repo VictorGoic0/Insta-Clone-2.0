@@ -175,7 +175,7 @@ export const getComments = id => dispatch => {
     .get(`https://goico-insta-backend.herokuapp.com/api/posts/${id}/comments`)
     .then(res => {
       console.log(res);
-      dispatch({ type: GET_COMMENTS_SUCCESS, payload: res.data, id });
+      dispatch({ type: GET_COMMENTS_SUCCESS, payload: res.data, post_id: id });
     })
     .catch(err => {
       console.log(err);

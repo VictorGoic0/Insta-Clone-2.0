@@ -6,7 +6,7 @@ import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import CommentSection from "../CommentSection/CommentSection";
 
-class SingularPost extends Component {
+class PostPage extends Component {
   componentDidMount() {
     if (Number(this.props.match.params.id) !== this.props.post.id) {
       this.props.getPost(this.props.match.params.id);
@@ -15,7 +15,7 @@ class SingularPost extends Component {
   likePost = () => {
     const like = {
       user_id: localStorage.getItem("userID"),
-      post_id: this.props.match.params.id
+      post_id: Number(this.props.match.params.id)
     };
     this.props.likePost(like);
   };
@@ -43,7 +43,7 @@ class SingularPost extends Component {
     return (
       <>
         <SearchBar />
-        <div className="singular-post-container">
+        <div className="post-page-container">
           <div className="post-image">
             <img src={imageUrl} alt="post" />
           </div>
@@ -94,4 +94,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getPost, deletePost, likePost }
-)(SingularPost);
+)(PostPage);

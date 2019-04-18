@@ -2,7 +2,7 @@ import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import PostContainer from "./PostContainer";
 
-const PostsPage = () => {
+const PostsFeed = () => {
   return (
     <>
       <SearchBar />
@@ -11,4 +11,4 @@ const PostsPage = () => {
   );
 };
 
-export default PostsPage;
+export default PostsFeed;

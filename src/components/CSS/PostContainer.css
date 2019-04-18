@@ -82,26 +82,26 @@
   justify-content: center;
 }
 
-.singular-post-container {
+.post-page-container {
   width: 1200px;
   display: flex;
   margin: 20px auto;
 }
 
-.singular-post-container .post {
+.post-page-container .post {
   width: 350px;
   margin: 0px 0px 0px 20px;
 }
 
-.singular-post-container .post-image {
+.post-page-container .post-image {
   width: 800px;
 }
 
-.singular-post-container .post-image img {
+.post-page-container .post-image img {
   width: 100%;
 }
 
-.singular-post-container .post .description {
+.post-page-container .post .description {
   padding-left: 4px;
   margin: 0 10px 0 14px;
   border-bottom: 1px solid #e7e7e7;
