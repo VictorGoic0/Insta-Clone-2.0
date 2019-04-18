@@ -197,8 +197,7 @@ const reducer = (state = initialState, action) => {
           if (post.id !== action.post_id) {
             return post;
           } else {
-            const newPost = { ...post };
-            newPost.comments = [...action.payload];
+            const newPost = { ...post, comments: action.payload };
             return newPost;
           }
         })

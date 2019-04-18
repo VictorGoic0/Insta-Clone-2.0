@@ -10,12 +10,13 @@ export const getPosts = () => dispatch => {
   axios
     .get("https://goico-insta-backend.herokuapp.com/api/posts/")
     .then(res => {
-      console.log(res);
       dispatch({ type: GET_POSTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: GET_POSTS_FAILURE, payload: err.message });
+      dispatch({
+        type: GET_POSTS_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -29,12 +30,13 @@ export const getPost = id => dispatch => {
   axios
     .get(`https://goico-insta-backend.herokuapp.com/api/posts/${id}`)
     .then(res => {
-      console.log(res);
       dispatch({ type: GET_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: GET_POST_FAILURE, payload: err.message });
+      dispatch({
+        type: GET_POST_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -48,12 +50,13 @@ export const addPost = post => dispatch => {
   axios
     .post("https://goico-insta-backend.herokuapp.com/api/posts/", post)
     .then(res => {
-      console.log(res);
       dispatch({ type: ADD_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: ADD_POST_FAILURE, payload: err.message });
+      dispatch({
+        type: ADD_POST_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -67,12 +70,13 @@ export const deletePost = id => dispatch => {
   axios
     .delete(`https://goico-insta-backend.herokuapp.com/api/posts/${id}`)
     .then(res => {
-      console.log(res);
       dispatch({ type: DELETE_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: DELETE_POST_FAILURE, payload: err.message });
+      dispatch({
+        type: DELETE_POST_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -86,12 +90,13 @@ export const editPost = post => dispatch => {
   axios
     .put(`https://goico-insta-backend.herokuapp.com/api/posts/${post.id}`, post)
     .then(res => {
-      console.log(res);
       dispatch({ type: EDIT_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: EDIT_POST_FAILURE, payload: err.message });
+      dispatch({
+        type: EDIT_POST_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -116,9 +121,10 @@ export const addComment = comment => dispatch => {
       });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: ADD_COMMENT_FAILURE, payload: err.message });
-      return err;
+      dispatch({
+        type: ADD_COMMENT_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -142,7 +148,10 @@ export const signUp = userInfo => dispatch => {
       localStorage.setItem("userID", res.data.userID);
     })
     .catch(err => {
-      dispatch({ type: SIGN_UP_FAILURE, payload: err.message });
+      dispatch({
+        type: SIGN_UP_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -160,7 +169,10 @@ export const signIn = userInfo => dispatch => {
       localStorage.setItem("userID", res.data.userID);
     })
     .catch(err => {
-      dispatch({ type: SIGN_IN_FAILURE, payload: err.message });
+      dispatch({
+        type: SIGN_IN_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -174,12 +186,13 @@ export const getComments = id => dispatch => {
   axios
     .get(`https://goico-insta-backend.herokuapp.com/api/posts/${id}/comments`)
     .then(res => {
-      console.log(res);
       dispatch({ type: GET_COMMENTS_SUCCESS, payload: res.data, post_id: id });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: GET_COMMENTS_FAILURE, payload: err.message });
+      dispatch({
+        type: GET_COMMENTS_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
 
@@ -192,11 +205,12 @@ export const likePost = info => dispatch => {
   axios
     .post(`https://goico-insta-backend.herokuapp.com/api/likes`, info)
     .then(res => {
-      console.log(res);
       dispatch({ type: LIKE_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({ type: LIKE_POST_FAILURE, payload: err.message });
+      dispatch({
+        type: LIKE_POST_FAILURE,
+        payload: `${err.message}. ${err.response.data.message}`
+      });
     });
 };
