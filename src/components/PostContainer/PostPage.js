@@ -19,6 +19,31 @@ class PostPage extends Component {
     };
     this.props.likePost(like);
   };
+  timeStamp = time => {
+    const date = new Date(Date.parse(time));
+    const diff = (new Date().getTime() - date.getTime()) / 1000;
+    const day_diff = Math.floor(diff / 86400);
+
+    if (diff < 60) {
+      return "just now";
+    } else if (diff < 120) {
+      return "1 minute ago";
+    } else if (diff < 3600) {
+      return `${Math.floor(diff / 60)} minutes ago`;
+    } else if (diff < 7200) {
+      return "1 hour ago";
+    } else if (diff < 86400) {
+      return `${Math.floor(diff / 3600)} hours ago`;
+    } else if (day_diff === 1) {
+      return "Yesterday";
+    } else if (day_diff < 7) {
+      return `${day_diff} days ago`;
+    } else if (day_diff === 7) {
+      return "1 week ago";
+    } else if (day_diff < 31) {
+      return `${Math.ceil(day_diff / 7)} weeks ago`;
+    }
+  };
 
   render() {
     const { fetchingPost, error } = this.props;
@@ -28,8 +53,10 @@ class PostPage extends Component {
       id,
       imageUrl,
       likes,
-      comments
+      comments,
+      createdAt
     } = this.props.post;
+    const timestamp = this.timeStamp(createdAt);
     if (fetchingPost || id === undefined) {
       return (
         <>
@@ -76,6 +103,7 @@ class PostPage extends Component {
                 post_id={id}
                 comments={comments}
                 path={this.props.match.path}
+                timestamp={timestamp}
               />
             </div>
           </div>

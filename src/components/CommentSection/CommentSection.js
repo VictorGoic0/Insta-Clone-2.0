@@ -55,7 +55,7 @@ class CommentSection extends Component {
   };
 
   render() {
-    const { comments } = this.props;
+    const { comments, timestamp } = this.props;
     return (
       <div className="comments">
         {this.state.showMore &&
@@ -75,7 +75,7 @@ class CommentSection extends Component {
             Show More Comments
           </p>
         ) : null}
-        <p className="timestamp">10 minutes ago</p>
+        <p className="timestamp">{timestamp}</p>
         <form onSubmit={e => this.addNewComment(e, this.state.comment)}>
           <input
             type="text"

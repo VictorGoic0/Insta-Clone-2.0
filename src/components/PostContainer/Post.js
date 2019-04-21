@@ -10,6 +10,31 @@ const Post = props => {
     };
     props.likePost(like);
   };
+  const timeStamp = time => {
+    const date = new Date(Date.parse(time));
+    const diff = (new Date().getTime() - date.getTime()) / 1000;
+    const day_diff = Math.floor(diff / 86400);
+
+    if (diff < 60) {
+      return "just now";
+    } else if (diff < 120) {
+      return "1 minute ago";
+    } else if (diff < 3600) {
+      return `${Math.floor(diff / 60)} minutes ago`;
+    } else if (diff < 7200) {
+      return "1 hour ago";
+    } else if (diff < 86400) {
+      return `${Math.floor(diff / 3600)} hours ago`;
+    } else if (day_diff === 1) {
+      return "Yesterday";
+    } else if (day_diff < 7) {
+      return `${day_diff} days ago`;
+    } else if (day_diff === 7) {
+      return "1 week ago";
+    } else if (day_diff < 31) {
+      return `${Math.ceil(day_diff / 7)} weeks ago`;
+    }
+  };
   const {
     thumbnailUrl,
     username,
@@ -17,8 +42,10 @@ const Post = props => {
     imageUrl,
     likes,
     comments,
-    showMore
+    showMore,
+    createdAt
   } = props.post;
+  const timestamp = timeStamp(createdAt);
   return (
     <div className="post">
       <div className="post-header">
@@ -41,7 +68,12 @@ const Post = props => {
           className="logo"
         />
         <h3>{likes} likes</h3>
-        <CommentSection post_id={id} comments={comments} showMore={showMore} />
+        <CommentSection
+          post_id={id}
+          comments={comments}
+          showMore={showMore}
+          timestamp={timestamp}
+        />
       </div>
     </div>
   );
