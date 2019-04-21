@@ -265,18 +265,30 @@ const reducer = (state = initialState, action) => {
         ...state,
         likingPost: false,
         post:
-          state.post.id === action.payload.post_id
+          action.payload.liked && state.post.id === action.payload.post_id
             ? { ...state.post, likes: (state.post.likes += 1) }
+            : !action.payload.liked && state.post.id === action.payload.post_id
+            ? { ...state.post, likes: (state.post.likes -= 1) }
             : state.post,
-        posts: state.posts.map(post => {
-          if (post.id === action.payload.post_id) {
-            const newPost = { ...post };
-            newPost.likes += 1;
-            return newPost;
-          } else {
-            return post;
-          }
-        })
+        posts: action.payload.liked
+          ? state.posts.map(post => {
+              if (post.id === action.payload.post_id) {
+                const newPost = { ...post };
+                newPost.likes += 1;
+                return newPost;
+              } else {
+                return post;
+              }
+            })
+          : state.posts.map(post => {
+              if (post.id === action.payload.post_id) {
+                const newPost = { ...post };
+                newPost.likes -= 1;
+                return newPost;
+              } else {
+                return post;
+              }
+            })
       };
     case LIKE_POST_FAILURE:
       return {
