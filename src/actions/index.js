@@ -1,4 +1,5 @@
 import axios from "axios";
+const endpoint = process.env.REACT_APP_BACKENDPOINT;
 
 export const GET_POSTS = "GET_POSTS";
 export const GET_POSTS_SUCCESS = "GET_POSTS_SUCCESS";
@@ -8,7 +9,7 @@ export const GET_POSTS_FAILURE = "GET_POSTS_FAILURE";
 export const getPosts = () => dispatch => {
   dispatch({ type: GET_POSTS });
   axios
-    .get("https://goico-insta-backend.herokuapp.com/api/posts/")
+    .get(`${endpoint}/api/posts/`)
     .then(res => {
       dispatch({ type: GET_POSTS_SUCCESS, payload: res.data });
     })
@@ -28,7 +29,7 @@ export const GET_POST_FAILURE = "GET_POST_FAILURE";
 export const getPost = id => dispatch => {
   dispatch({ type: GET_POST });
   axios
-    .get(`https://goico-insta-backend.herokuapp.com/api/posts/${id}`)
+    .get(`${endpoint}/api/posts/${id}/`)
     .then(res => {
       dispatch({ type: GET_POST_SUCCESS, payload: res.data });
     })
@@ -48,7 +49,7 @@ export const ADD_POST_FAILURE = "ADD_POST_FAILURE";
 export const addPost = post => dispatch => {
   dispatch({ type: ADD_POST });
   axios
-    .post("https://goico-insta-backend.herokuapp.com/api/posts/", post)
+    .post(`${endpoint}/api/posts/`, post)
     .then(res => {
       dispatch({ type: ADD_POST_SUCCESS, payload: res.data });
     })
@@ -68,7 +69,7 @@ export const DELETE_POST_FAILURE = "DELETE_POST_FAILURE";
 export const deletePost = id => dispatch => {
   dispatch({ type: DELETE_POST });
   axios
-    .delete(`https://goico-insta-backend.herokuapp.com/api/posts/${id}`)
+    .delete(`${endpoint}/api/posts/${id}/`)
     .then(res => {
       dispatch({ type: DELETE_POST_SUCCESS, payload: res.data });
     })
@@ -88,7 +89,7 @@ export const EDIT_POST_FAILURE = "EDIT_POST_FAILURE";
 export const editPost = post => dispatch => {
   dispatch({ type: EDIT_POST });
   axios
-    .put(`https://goico-insta-backend.herokuapp.com/api/posts/${post.id}`, post)
+    .put(`${endpoint}/api/posts/${post.id}/`, post)
     .then(res => {
       dispatch({ type: EDIT_POST_SUCCESS, payload: res.data });
     })
@@ -107,12 +108,7 @@ export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
 export const addComment = comment => dispatch => {
   dispatch({ type: ADD_COMMENT });
   return axios
-    .post(
-      `https://goico-insta-backend.herokuapp.com/api/posts/${
-        comment.post_id
-      }/comments`,
-      comment
-    )
+    .post(`${endpoint}/api/posts/${comment.post_id}/comments`, comment)
     .then(res => {
       dispatch({
         type: ADD_COMMENT_SUCCESS,
@@ -141,7 +137,7 @@ export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 export const signUp = userInfo => dispatch => {
   dispatch({ type: SIGN_UP });
   return axios
-    .post("https://goico-insta-backend.herokuapp.com/auth/register", userInfo)
+    .post(`${endpoint}/auth/register/`, userInfo)
     .then(res => {
       dispatch({ type: SIGN_UP_SUCCESS, payload: res.data.token });
       localStorage.setItem("token", res.data.token);
@@ -162,7 +158,7 @@ export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
 export const signIn = userInfo => dispatch => {
   dispatch({ type: SIGN_IN });
   return axios
-    .post("https://goico-insta-backend.herokuapp.com/auth/login", userInfo)
+    .post(`${endpoint}/auth/login/`, userInfo)
     .then(res => {
       dispatch({ type: SIGN_IN_SUCCESS, payload: res.data.token });
       localStorage.setItem("token", res.data.token);
@@ -184,7 +180,7 @@ export const GET_COMMENTS_FAILURE = "GET_COMMENTS_FAILURE";
 export const getComments = id => dispatch => {
   dispatch({ type: GET_COMMENTS });
   axios
-    .get(`https://goico-insta-backend.herokuapp.com/api/posts/${id}/comments`)
+    .get(`${endpoint}/api/posts/${id}/comments/`)
     .then(res => {
       dispatch({ type: GET_COMMENTS_SUCCESS, payload: res.data, post_id: id });
     })
@@ -203,7 +199,7 @@ export const LIKE_POST_FAILURE = "LIKE_POST_FAILURE";
 export const likePost = info => dispatch => {
   dispatch({ type: LIKE_POST });
   axios
-    .post(`https://goico-insta-backend.herokuapp.com/api/likes`, info)
+    .post(`${endpoint}/api/likes/`, info)
     .then(res => {
       dispatch({ type: LIKE_POST_SUCCESS, payload: res.data });
     })
