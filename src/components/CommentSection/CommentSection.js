@@ -4,6 +4,7 @@ import Comment from "./Comment";
 import { connect } from "react-redux";
 import { addComment, getComments } from "../../actions";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 class CommentSection extends Component {
   state = {
@@ -75,7 +76,7 @@ class CommentSection extends Component {
             Show More Comments
           </p>
         ) : null}
-        <p className="timestamp">{timestamp}</p>
+        <p className="timestamp">{moment(timestamp).fromNow()}</p>
         <form onSubmit={e => this.addNewComment(e, this.state.comment)}>
           <input
             type="text"
