@@ -173,9 +173,6 @@ const reducer = (state = initialState, action) => {
           } else {
             const newPost = { ...post };
             newPost.comments = [...newPost.comments, action.payload];
-            if (newPost.comments.length > 4) {
-              newPost.showMore = true;
-            }
             return newPost;
           }
         })

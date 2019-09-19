@@ -62,9 +62,9 @@ class CommentSection extends Component {
         {this.state.showMore &&
         comments.length > 4 &&
         this.props.path !== "/posts/:id"
-          ? comments
-              .slice(0, 4)
-              .map(comment => <Comment key={comment.id} comment={comment} />)
+          ? comments.map(comment => (
+              <Comment key={comment.id} comment={comment} />
+            ))
           : comments.map(comment => (
               <Comment key={comment.id} comment={comment} />
             ))}
