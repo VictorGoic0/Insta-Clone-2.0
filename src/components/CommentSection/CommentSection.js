@@ -11,18 +11,18 @@ class CommentSection extends Component {
     comment: {
       post_id: this.props.post_id,
       user_id: localStorage.getItem("userID"),
-      text: ""
+      text: "",
     },
-    showMore: true
+    showMore: true,
   };
 
-  handleChanges = e => {
+  handleChanges = (e) => {
     e.persist();
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       comment: {
         ...prevState.comment,
-        text: e.target.value
-      }
+        text: e.target.value,
+      },
     }));
   };
 
@@ -30,42 +30,42 @@ class CommentSection extends Component {
     e.preventDefault();
     this.props
       .addComment(comment)
-      .then(res => {
-        this.setState(prevState => ({
+      .then((res) => {
+        this.setState((prevState) => ({
           comment: {
             ...prevState.comment,
-            text: ""
-          }
+            text: "",
+          },
         }));
       })
-      .catch(err => {
+      .catch((err) => {
         alert(`Comment failed to post ${err}. Please try again.`);
       });
   };
 
-  getComments = id => {
+  getComments = (id) => {
     this.props.getComments(id);
     this.toggleShowMore();
   };
 
   toggleShowMore = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       ...prevState,
-      showMore: !prevState.showMore
+      showMore: !prevState.showMore,
     }));
   };
 
   render() {
-    const { comments, timestamp } = this.props;
+    const { comments } = this.props;
     return (
       <div className="comments">
         {this.state.showMore &&
         comments.length > 4 &&
         this.props.path !== "/posts/:id"
-          ? comments.map(comment => (
+          ? comments.map((comment) => (
               <Comment key={comment.id} comment={comment} />
             ))
-          : comments.map(comment => (
+          : comments.map((comment) => (
               <Comment key={comment.id} comment={comment} />
             ))}
         {this.props.showMore && this.state.showMore ? (
@@ -76,8 +76,8 @@ class CommentSection extends Component {
             Show More Comments
           </p>
         ) : null}
-        <p className="timestamp">{moment(timestamp).fromNow()}</p>
-        <form onSubmit={e => this.addNewComment(e, this.state.comment)}>
+        {/* <p className="timestamp">{moment(timestamp).fromNow()}</p> */}
+        <form onSubmit={(e) => this.addNewComment(e, this.state.comment)}>
           <input
             type="text"
             value={this.state.comment.text}
@@ -95,12 +95,9 @@ CommentSection.propTypes = {
   comments: PropTypes.arrayOf(
     PropTypes.shape({
       username: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
+      text: PropTypes.string.isRequired,
     })
-  )
+  ),
 };
 
-export default connect(
-  null,
-  { addComment, getComments }
-)(CommentSection);
+export default connect(null, { addComment, getComments })(CommentSection);

@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CommentSection from "../CommentSection/CommentSection";
 
-const Post = props => {
+const Post = (props) => {
   const likePost = () => {
     const like = {
       user_id: Number(localStorage.getItem("userID")),
-      post_id: id
+      post_id: id,
     };
     props.likePost(like);
   };
@@ -18,7 +18,7 @@ const Post = props => {
     likes,
     comments,
     showMore,
-    createdAt
+    createdAt,
   } = props.post;
 
   return (
@@ -47,7 +47,7 @@ const Post = props => {
           post_id={id}
           comments={comments}
           showMore={showMore}
-          timestamp={createdAt}
+          // timestamp={createdAt}
         />
       </div>
     </div>

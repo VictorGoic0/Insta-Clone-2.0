@@ -15,22 +15,15 @@ class PostPage extends Component {
   likePost = () => {
     const like = {
       user_id: localStorage.getItem("userID"),
-      post_id: Number(this.props.match.params.id)
+      post_id: Number(this.props.match.params.id),
     };
     this.props.likePost(like);
   };
 
   render() {
     const { fetchingPost, error } = this.props;
-    const {
-      thumbnailUrl,
-      username,
-      id,
-      imageUrl,
-      likes,
-      comments,
-      createdAt
-    } = this.props.post;
+    const { thumbnailUrl, username, id, imageUrl, likes, comments, createdAt } =
+      this.props.post;
 
     if (fetchingPost || id === undefined) {
       return (
@@ -78,7 +71,7 @@ class PostPage extends Component {
                 post_id={id}
                 comments={comments}
                 path={this.props.match.path}
-                timestamp={createdAt}
+                // timestamp={createdAt}
               />
             </div>
           </div>
@@ -88,13 +81,12 @@ class PostPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   post: state.post,
   fetchingPost: state.fetchingPost,
-  error: state.error
+  error: state.error,
 });
 
-export default connect(
-  mapStateToProps,
-  { getPost, deletePost, likePost }
-)(PostPage);
+export default connect(mapStateToProps, { getPost, deletePost, likePost })(
+  PostPage
+);
