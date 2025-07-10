@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signIn } from "../../actions";
+import { signUp } from "../../actions";
 import "../CSS/Login.css";
 
-class Login extends Component {
+class Signup extends Component {
   state = {
     user: {
       username: "",
@@ -11,10 +11,10 @@ class Login extends Component {
     },
   };
 
-  signIn = (e, userInfo) => {
+  signUp = (e, userInfo) => {
     e.preventDefault();
     this.props
-      .signIn(userInfo)
+      .signUp(userInfo)
       .then((res) => {
         this.props.history.push("/");
       })
@@ -33,14 +33,14 @@ class Login extends Component {
   };
 
   switchLogin = (e) => {
-    this.props.history.push("/signup");
+    this.props.history.push("/login");
   };
 
   render() {
     return (
       <div className="login">
         <img src="/Images/iglogo.png" alt="Instagram" />
-        <form onSubmit={(e) => this.signIn(e, this.state.user)}>
+        <form onSubmit={(e) => this.signUp(e, this.state.user)}>
           <input
             type="text"
             value={this.state.user.username}
@@ -55,14 +55,15 @@ class Login extends Component {
             onChange={this.handleChanges}
             placeholder="Password"
           />
-          <button>Sign In</button>
+          <button>Sign Up</button>
         </form>
         <h3>
-          Don't Have An Account? <span onClick={this.switchLogin}>Sign Up</span>
+          Already Have An Account?{" "}
+          <span onClick={this.switchLogin}>Sign In</span>
         </h3>
       </div>
     );
   }
 }
 
-export default connect(null, { signIn })(Login);
+export default connect(null, { signUp })(Signup);
