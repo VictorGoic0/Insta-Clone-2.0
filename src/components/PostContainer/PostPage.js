@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 import "../CSS/PostContainer.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { getPost, deletePost, likePost } from "../../actions";
@@ -54,6 +55,7 @@ class PostPage extends Component {
             {this.props.post.description ? (
               <p className="description">{this.props.post.description}</p>
             ) : null}
+            {<p className="timestamp">{moment(createdAt).fromNow()}</p>}
             <div className="post-footer">
               <img
                 src="https://img.icons8.com/windows/32/000000/like.png"
@@ -71,7 +73,6 @@ class PostPage extends Component {
                 post_id={id}
                 comments={comments}
                 path={this.props.match.path}
-                // timestamp={createdAt}
               />
             </div>
           </div>
