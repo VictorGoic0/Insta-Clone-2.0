@@ -61,9 +61,9 @@ class PostPage extends Component {
                 alt="profile thumbnail"
               />
               <h2>{username}</h2>
-              {currentUser && currentUser.userID === user_id ? (
+              {/* {currentUser && currentUser.userID === user_id ? (
                 <Trash2 size={18} color="#000" />
-              ) : null}
+              ) : null} */}
             </div>
             {this.props.post.description ? (
               <p className="description">{this.props.post.description}</p>

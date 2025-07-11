@@ -10,9 +10,9 @@ const Comment = (props) => {
       <img src={thumbnailUrl} className="thumbnail" alt="profile thumbnail" />
       <h4>{username}</h4>
       <p>{text}</p>
-      {currentUser && currentUser.username === username ? (
+      {/* {currentUser && currentUser.username === username ? (
         <Trash2 size={14} color="#000" />
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
