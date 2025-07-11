@@ -55,17 +55,25 @@ class CommentSection extends Component {
   };
 
   render() {
-    const { comments } = this.props;
+    const { comments, currentUser } = this.props;
     return (
       <div className="comments">
         {this.state.showMore &&
         comments.length > 4 &&
         this.props.path !== "/posts/:id"
           ? comments.map((comment) => (
-              <Comment key={comment.id} comment={comment} />
+              <Comment
+                key={comment.id}
+                comment={comment}
+                currentUser={currentUser}
+              />
             ))
           : comments.map((comment) => (
-              <Comment key={comment.id} comment={comment} />
+              <Comment
+                key={comment.id}
+                comment={comment}
+                currentUser={currentUser}
+              />
             ))}
         {this.props.showMore && this.state.showMore ? (
           <p

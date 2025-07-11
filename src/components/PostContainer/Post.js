@@ -48,7 +48,12 @@ const Post = (props) => {
           className="logo"
         />
         <h3>{likes} likes</h3>
-        <CommentSection post_id={id} comments={comments} showMore={showMore} />
+        <CommentSection
+          post_id={id}
+          comments={comments}
+          showMore={showMore}
+          currentUser={currentUser}
+        />
       </div>
     </div>
   );

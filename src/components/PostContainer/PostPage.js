@@ -86,6 +86,7 @@ class PostPage extends Component {
                 post_id={id}
                 comments={comments}
                 path={this.props.match.path}
+                currentUser={currentUser}
               />
             </div>
           </div>
