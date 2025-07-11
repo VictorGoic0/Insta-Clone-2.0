@@ -15,7 +15,8 @@ class PostContainer extends Component {
   }
 
   render() {
-    const { posts, fetchingPosts, searchedPosts, searchInput } = this.props;
+    const { posts, fetchingPosts, searchedPosts, searchInput, currentUser } =
+      this.props;
 
     if (fetchingPosts) {
       return (
@@ -28,23 +29,29 @@ class PostContainer extends Component {
       <div className="post-container">
         <PostForm />
         {searchInput.length > 0
-          ? searchedPosts.map(post => (
+          ? searchedPosts.map((post) => (
               <Post post={post} key={post.id} likePost={this.props.likePost} />
             ))
-          : posts.map(post => (
-              <Post post={post} key={post.id} likePost={this.props.likePost} />
+          : posts.map((post) => (
+              <Post
+                post={post}
+                key={post.id}
+                likePost={this.props.likePost}
+                currentUser={currentUser}
+              />
             ))}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   posts: state.posts,
   searchedPosts: state.searchedPosts,
   searchInput: state.searchInput,
   fetchingPosts: state.fetchingPosts,
-  error: state.error
+  currentUser: state.currentUser,
+  error: state.error,
 });
 
 PostContainer.propTypes = {
@@ -54,12 +61,9 @@ PostContainer.propTypes = {
       thumbnailUrl: PropTypes.string.isRequired,
       imageUrl: PropTypes.string.isRequired,
       likes: PropTypes.number.isRequired,
-      comments: PropTypes.array.isRequired
+      comments: PropTypes.array.isRequired,
     })
-  )
+  ),
 };
 
-export default connect(
-  mapStateToProps,
-  { getPosts, likePost }
-)(PostContainer);
+export default connect(mapStateToProps, { getPosts, likePost })(PostContainer);

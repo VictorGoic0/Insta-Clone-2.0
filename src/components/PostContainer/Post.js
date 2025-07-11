@@ -21,12 +21,16 @@ const Post = (props) => {
     showMore,
     createdAt,
   } = props.post;
+  const { currentUser } = props;
 
   return (
     <div className="post">
       <div className="post-header">
         <img className="thumbnail" src={thumbnailUrl} alt="profile thumbnail" />
         <h2>{username}</h2>
+        {currentUser && currentUser.username === username ? (
+          <Trash2 size={18} color="#000" />
+        ) : null}
       </div>
       <Link to={`/posts/${id}`}>
         <img className="post-img" src={imageUrl} alt="post" />

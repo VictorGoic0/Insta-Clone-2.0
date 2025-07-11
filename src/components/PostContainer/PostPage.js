@@ -23,7 +23,6 @@ class PostPage extends Component {
   };
 
   render() {
-    console.log(this.props, "<--- props");
     const { fetchingPost, error } = this.props;
     const {
       thumbnailUrl,
