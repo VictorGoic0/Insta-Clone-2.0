@@ -1,4 +1,3 @@
-import React from "react";
 import "./components/CSS/App.css";
 import { Route } from "react-router-dom";
 import PostsFeed from "./components/PostContainer/PostsFeed";
@@ -6,6 +5,10 @@ import PostPage from "./components/PostContainer/PostPage";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import PrivateRoute from "./components/Authentication/PrivateRoute";
+import { createRoot } from "react-dom/client";
+// import { RouterProvider, createRouter } from "@tanstack/react-router";
+// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// import { routeTree } from "./routeTree.gen";
 
 const App = () => {
   return (
@@ -18,4 +21,6 @@ const App = () => {
   );
 };
 
-export default App;
+const container = document.getElementById("root");
+const root = createRoot(container);
+root.render(<App />);
