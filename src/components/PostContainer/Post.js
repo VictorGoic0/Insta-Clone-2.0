@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CommentSection from "../CommentSection/CommentSection";
+import { Trash2 } from "lucide-react";
 
 const Post = (props) => {
   const likePost = () => {

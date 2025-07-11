@@ -6,6 +6,7 @@ import { getPost, deletePost, likePost } from "../../actions";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import CommentSection from "../CommentSection/CommentSection";
+import { Trash2 } from "lucide-react";
 
 class PostPage extends Component {
   componentDidMount() {
@@ -22,9 +23,19 @@ class PostPage extends Component {
   };
 
   render() {
+    console.log(this.props, "<--- props");
     const { fetchingPost, error } = this.props;
-    const { thumbnailUrl, username, id, imageUrl, likes, comments, createdAt } =
-      this.props.post;
+    const {
+      thumbnailUrl,
+      username,
+      id,
+      imageUrl,
+      likes,
+      comments,
+      createdAt,
+      user_id,
+    } = this.props.post;
+    const { currentUser } = this.props;
 
     if (fetchingPost || id === undefined) {
       return (
@@ -51,6 +62,9 @@ class PostPage extends Component {
                 alt="profile thumbnail"
               />
               <h2>{username}</h2>
+              {currentUser && currentUser.userID === user_id ? (
+                <Trash2 size={18} color="#000" />
+              ) : null}
             </div>
             {this.props.post.description ? (
               <p className="description">{this.props.post.description}</p>
@@ -86,6 +100,7 @@ const mapStateToProps = (state) => ({
   post: state.post,
   fetchingPost: state.fetchingPost,
   error: state.error,
+  currentUser: state.currentUser,
 });
 
 export default connect(mapStateToProps, { getPost, deletePost, likePost })(
