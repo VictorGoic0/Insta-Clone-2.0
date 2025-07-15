@@ -36,7 +36,7 @@ export default function SignUpRoute() {
 				<button>Sign Up</button>
 			</form>
 			<h3>
-				Already Have An Account? <span onClick={switchLogin}>Sign In</span>
+				Already Have An Account? <span onClick={switchLogin}>Log In</span>
 			</h3>
 		</div>
 	);
