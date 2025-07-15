@@ -1,7 +1,7 @@
 import "./CSS/SearchBar.css";
 import { Link } from "@tanstack/react-router";
 
-export default function SearchBar(props) {
+export default function SearchBar() {
 
   const logOut = () => {
     // do nothing for now
