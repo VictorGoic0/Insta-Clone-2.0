@@ -1,3 +1,4 @@
+import "../CSS/Login.css";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
 import login from "../api/login";
