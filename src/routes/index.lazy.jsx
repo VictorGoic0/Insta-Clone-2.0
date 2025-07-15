@@ -1,7 +1,6 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-// import { useMutation } from '@tanstack/react-query'
 
-export const Route = createLazyFileRoute('/home')({
+export const Route = createLazyFileRoute('/')({
   component: HomeRoute,
 })
 
