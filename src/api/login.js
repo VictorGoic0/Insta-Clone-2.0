@@ -1,7 +1,7 @@
-export default async function signUp(userInfo) {
+export default async function login(userInfo) {
   const endpoint = process.env.REACT_APP_BACKENDPOINT;
   try {
-    const response = await fetch(`${endpoint}/auth/register`, {
+    const response = await fetch(`${endpoint}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
