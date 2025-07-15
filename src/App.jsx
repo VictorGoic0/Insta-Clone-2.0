@@ -8,6 +8,9 @@ const router = createRouter({ routeTree });
 const queryClient = new QueryClient();
 
 const App = () => {
+	// TODO: 
+	// let's create a context object we use just for login auth state
+	// we will wrap everything in this context
 	return (
 		<>
 			<QueryClientProvider client={queryClient}>
