@@ -1,14 +1,18 @@
-export default async function postContact(name, email, message) {
-  const response = await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, email, message }),
-  });
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+export default async function likePost(postInfo) {
+  const endpoint = process.env.REACT_APP_BACKENDPOINT;
+  try {
+    const response = await fetch(`${endpoint}/api/likes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postInfo),
+    });
+    if (!response.ok) {
+      console.log(response, "<--- not OK");
+    }
+    return response.json();
+  } catch (error) {
+    throw new Error(`${error.message}. ${error.response.data.message}`);
   }
-
-  return response.json();
 }
