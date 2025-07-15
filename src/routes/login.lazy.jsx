@@ -29,11 +29,11 @@ export default function LoginRoute() {
 
 	return (
 		<div className="login">
-			{/* <img src="/Images/iglogo.png" alt="Instagram logo" /> */}
+			<img src="/images/iglogo.png" alt="Instagram logo" />
 			<form onSubmit={mutation.mutate}>
 				<input type="text" name="username" placeholder="Username" required />
 				<input type="password" name="password" placeholder="Password" required />
-				<button>Sign In</button>
+				<button>Log In</button>
 			</form>
 			<h3>
 				Don't Have An Account? <span onClick={switchLogin}>Sign Up</span>
