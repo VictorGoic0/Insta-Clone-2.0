@@ -8,73 +8,73 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
-import { Route as rootRouteImport } from './routes/__root'
+import { Route as rootRouteImport } from "./routes/__root";
 
-const SignupLazyRouteImport = createFileRoute('/signup')()
-const LoginLazyRouteImport = createFileRoute('/login')()
+const SignupLazyRouteImport = createFileRoute("/signup")();
+const LoginLazyRouteImport = createFileRoute("/login")();
 
 const SignupLazyRoute = SignupLazyRouteImport.update({
-  id: '/signup',
-  path: '/signup',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/signup.lazy').then((d) => d.Route))
+	id: "/signup",
+	path: "/signup",
+	getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import("./routes/signup.lazy").then((d) => d.Route));
 const LoginLazyRoute = LoginLazyRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
+	id: "/login",
+	path: "/login",
+	getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import("./routes/login.lazy").then((d) => d.Route));
 
 export interface FileRoutesByFullPath {
-  '/login': typeof LoginLazyRoute
-  '/signup': typeof SignupLazyRoute
+	"/login": typeof LoginLazyRoute;
+	"/signup": typeof SignupLazyRoute;
 }
 export interface FileRoutesByTo {
-  '/login': typeof LoginLazyRoute
-  '/signup': typeof SignupLazyRoute
+	"/login": typeof LoginLazyRoute;
+	"/signup": typeof SignupLazyRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/login': typeof LoginLazyRoute
-  '/signup': typeof SignupLazyRoute
+	__root__: typeof rootRouteImport;
+	"/login": typeof LoginLazyRoute;
+	"/signup": typeof SignupLazyRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/signup'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/signup'
-  id: '__root__' | '/login' | '/signup'
-  fileRoutesById: FileRoutesById
+	fileRoutesByFullPath: FileRoutesByFullPath;
+	fullPaths: "/login" | "/signup";
+	fileRoutesByTo: FileRoutesByTo;
+	to: "/login" | "/signup";
+	id: "__root__" | "/login" | "/signup";
+	fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  LoginLazyRoute: typeof LoginLazyRoute
-  SignupLazyRoute: typeof SignupLazyRoute
+	LoginLazyRoute: typeof LoginLazyRoute;
+	SignupLazyRoute: typeof SignupLazyRoute;
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/signup': {
-      id: '/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof SignupLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
+declare module "@tanstack/react-router" {
+	interface FileRoutesByPath {
+		"/signup": {
+			id: "/signup";
+			path: "/signup";
+			fullPath: "/signup";
+			preLoaderRoute: typeof SignupLazyRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/login": {
+			id: "/login";
+			path: "/login";
+			fullPath: "/login";
+			preLoaderRoute: typeof LoginLazyRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+	}
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  LoginLazyRoute: LoginLazyRoute,
-  SignupLazyRoute: SignupLazyRoute,
-}
+	LoginLazyRoute: LoginLazyRoute,
+	SignupLazyRoute: SignupLazyRoute,
+};
 export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+	._addFileChildren(rootRouteChildren)
+	._addFileTypes<FileRouteTypes>();
