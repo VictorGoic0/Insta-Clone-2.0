@@ -1,10 +1,17 @@
+import { useContext } from "react";
 import "./CSS/SearchBar.css";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { CurrentUserContext } from "./contexts";
 
 export default function SearchBar() {
+  const [, setCurrentUser ] = useContext(CurrentUserContext);
+  const navigate = useNavigate();
 
   const logOut = () => {
-    // do nothing for now
+    localStorage.removeItem("currentUser")
+    localStorage.removeItem("token")
+    setCurrentUser(null)
+    navigate({ to: "/login" })
   }
 
   const searchSubmit = () => {
