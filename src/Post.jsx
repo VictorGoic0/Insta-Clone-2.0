@@ -1,5 +1,8 @@
 import { Link } from "@tanstack/react-router";
-// import { Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
+import CommentSection from "./CommentSection"
+import { useContext } from "react";
+import { CurrentUserContext } from "./contexts";
 
 export default function Post(props) {
   const {
@@ -8,10 +11,11 @@ export default function Post(props) {
     id,
     imageUrl,
     likes,
-    // comments,
-    // showMore
+    comments,
+    showMore
   } = props.post;
-  // const { currentUser } = props;
+  const [ currentUser ] = useContext(CurrentUserContext);
+  console.log(currentUser, "<--- currentUser in Post")
 
   const likePost = () => {
     // const like = {
@@ -27,9 +31,9 @@ export default function Post(props) {
       <div className="post-header">
         <img className="thumbnail" src={thumbnailUrl} alt="profile thumbnail" />
         <h2>{username}</h2>
-        {/* {currentUser && currentUser.username === username ? (
+        {currentUser && currentUser.username === username ? (
           <Trash2 size={18} color="#000" />
-        ) : null} */}
+        ) : null}
       </div>
       <Link to={`/posts/${id}`}>
         <img className="post-img" src={imageUrl} alt="post" />
@@ -47,12 +51,11 @@ export default function Post(props) {
           className="logo"
         />
         <h3>{likes} likes</h3>
-        {/* <CommentSection
+        <CommentSection
           post_id={id}
           comments={comments}
           showMore={showMore}
-          currentUser={currentUser}
-        /> */}
+        />
       </div>
     </div>
   );

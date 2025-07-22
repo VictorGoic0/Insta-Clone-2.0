@@ -20,6 +20,7 @@ export default function SignUpRoute() {
 				password: formData.get("password"),
 			};
 			return signup(userInfo);
+			// set currentUser here
 		},
 	});
 

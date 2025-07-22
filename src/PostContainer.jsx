@@ -1,8 +1,12 @@
 import PostForm from "./PostForm"
 import Post from "./Post"
+import { useContext } from "react";
+import { CurrentUserContext } from "./contexts";
 
 export default function PostContainer(props) {
-  const { posts, searchedPosts, searchInput, currentUser } = props;
+  const { posts, searchedPosts, searchInput } = props;
+  const [ currentUser ] = useContext(CurrentUserContext);
+  console.log(currentUser, "<--- currentUser in PostContainer")
 
   
   return (
@@ -10,14 +14,13 @@ export default function PostContainer(props) {
         <PostForm />
         {searchInput.length > 0
           ? searchedPosts.map((post) => (
-              <Post post={post} key={post.id} likePost={this.props.likePost} />
+              <Post post={post} key={post.id} likePost={props.likePost} />
             ))
           : posts.map((post) => (
               <Post
                 post={post}
                 key={post.id}
-                likePost={this.props.likePost}
-                currentUser={currentUser}
+                likePost={props.likePost}
               />
             ))}
       </div>

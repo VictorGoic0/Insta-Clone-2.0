@@ -20,6 +20,7 @@ export default function LoginRoute() {
 				password: formData.get("password"),
 			};
 			return login(userInfo);
+			// set currentUser here
 		},
 	});
 

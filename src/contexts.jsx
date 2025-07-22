@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const UserProfileContext = createContext([[], function () {}]);
+export const CurrentUserContext = createContext([[], function () {}]);
