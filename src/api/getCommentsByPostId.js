@@ -1,5 +1,5 @@
 export default async function getCommentsByPostId(postId) {
-	const endpoint = process.env.REACT_APP_BACKENDPOINT;
+	const endpoint = import.meta.env.VITE_BACKENDPOINT;
 
 	try {
 		const response = await fetch(`${endpoint}/api/posts/${[postId]}/comments`);

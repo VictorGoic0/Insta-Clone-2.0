@@ -1,5 +1,5 @@
 export default async function likePost(postInfo) {
-	const endpoint = process.env.REACT_APP_BACKENDPOINT;
+	const endpoint = import.meta.env.VITE_BACKENDPOINT;
 	try {
 		const response = await fetch(`${endpoint}/api/likes`, {
 			method: "POST",

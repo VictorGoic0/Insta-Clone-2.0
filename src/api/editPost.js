@@ -1,5 +1,5 @@
 export default async function editPost(post) {
-	const endpoint = process.env.REACT_APP_BACKENDPOINT;
+	const endpoint = import.meta.env.VITE_BACKENDPOINT;
 	try {
 		const response = await fetch(`${endpoint}/api/posts/${post.id}`, {
 			method: "PUT",

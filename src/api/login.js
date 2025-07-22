@@ -1,5 +1,5 @@
 export default async function login(userInfo) {
-	const endpoint = process.env.REACT_APP_BACKENDPOINT;
+	const endpoint = import.meta.env.VITE_BACKENDPOINT;
 	try {
 		const response = await fetch(`${endpoint}/auth/login`, {
 			method: "POST",
