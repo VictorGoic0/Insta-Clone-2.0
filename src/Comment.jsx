@@ -5,7 +5,6 @@ import { CurrentUserContext } from "./contexts";
 export default function Comment(props) {
   const { thumbnailUrl, username, text } = props.comment;
   const [ currentUser ] = useContext(CurrentUserContext);
-  console.log(currentUser, "<--- currentUser in Comment")
 
   return (
     <div className="comment">

@@ -15,7 +15,6 @@ export default function Post(props) {
     showMore
   } = props.post;
   const [ currentUser ] = useContext(CurrentUserContext);
-  console.log(currentUser, "<--- currentUser in Post")
 
   const likePost = () => {
     // const like = {

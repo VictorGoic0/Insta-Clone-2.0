@@ -10,7 +10,6 @@ export default function CommentSection(props) {
   const userId = localStorage.getItem("userID")
   const [showMore, setShowMore] = useState(true)
   const [ currentUser ] = useContext(CurrentUserContext);
-  console.log(currentUser, "<--- currentUser in CommentSection")
 
   const addNewComment = (e, comment) => {
     console.log("add new comment")
