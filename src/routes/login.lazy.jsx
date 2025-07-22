@@ -1,6 +1,5 @@
 import "../CSS/Login.css";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { useMutation } from "@tanstack/react-query";
 import login from "../api/login";
 import { useNavigate } from "@tanstack/react-router";
 
@@ -11,18 +10,16 @@ export const Route = createLazyFileRoute("/login")({
 export default function LoginRoute() {
 	const navigate = useNavigate();
 
-	const mutation = useMutation({
-		mutationFn: function (e) {
-			e.preventDefault();
-			const formData = new FormData(e.target);
-			const userInfo = {
-				username: formData.get("username"),
-				password: formData.get("password"),
-			};
-			return login(userInfo);
-			// set currentUser here
-		},
-	});
+	const submitLogin = (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target);
+		const userInfo = {
+			username: formData.get("username"),
+			password: formData.get("password"),
+		};
+		console.log(userInfo, "<--- userInfo")
+		return login(userInfo);
+	};
 
 	const switchLogin = () => {
 		navigate({ to: "/signup" });
@@ -31,7 +28,7 @@ export default function LoginRoute() {
 	return (
 		<div className="login">
 			<img src="/images/iglogo.png" alt="Instagram logo" />
-			<form onSubmit={mutation.mutate}>
+			<form onSubmit={submitLogin}>
 				<input type="text" name="username" placeholder="Username" required />
 				<input type="password" name="password" placeholder="Password" required />
 				<button>Log In</button>
