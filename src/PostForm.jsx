@@ -1,9 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import addPost from "./api/addPost"
+import { CurrentUserContext } from "./contexts";
 
 export default function PostForm() {
-  const [open, setOpen] = useState(false)
+  const [ currentUser ] = useContext(CurrentUserContext);
+  const [ open, setOpen ] = useState(false)
   const mutation = useMutation({
 		mutationFn: function (e) {
 			e.preventDefault();
@@ -11,7 +13,7 @@ export default function PostForm() {
 			const postInfo = {
 				description: formData.get("description"),
 				imageUrl: formData.get("password"),
-        user_id: localStorage.getItem("userID")
+        user_id: currentUser.userID
 			};
 			return addPost(postInfo);
 		},

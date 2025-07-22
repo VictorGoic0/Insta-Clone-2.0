@@ -10,20 +10,22 @@ export const Route = createLazyFileRoute('/')({
 })
 
 export default function PostsFeed () {
-  // TODO: add search input state here
-  // TODO: add GET posts state here
   const [searchInput, setSearchInput] = useState("")
   const [posts, setPosts] = useState([])
 
-  useEffect(async () => {
+  const setAllPosts = async () => {
     const allPosts = await getAllPosts()
     setPosts(allPosts)
+  }
+  
+  useEffect(() => {
+    setAllPosts()
   }, [])
 
   
   return (
     <ProtectedRoute>
-      <SearchBar />
+      <SearchBar setSearchInput={setSearchInput} />
       <PostContainer searchInput={searchInput} posts={posts} />
     </ProtectedRoute>
   )
