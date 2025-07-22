@@ -9,13 +9,11 @@ export const Route = createRootRoute({
 });
 
 function RootRoute() {
-	const [currentUser, setCurrentUser] = useState(null)
+	const [currentUser, setCurrentUser] = useState(undefined);
 
 	useEffect(() => {
-		const currentUser = localStorage.getItem("currentUser");
-		if (currentUser) {
-			setCurrentUser(JSON.parse(currentUser));
-		}
+		const user = localStorage.getItem("currentUser");
+		setCurrentUser(user ? JSON.parse(user) : null);
 	}, []);
 
 	return (

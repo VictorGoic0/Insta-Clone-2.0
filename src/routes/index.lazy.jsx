@@ -1,4 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
+import { ProtectedRoute } from '../ProtectedRoute'
 
 export const Route = createLazyFileRoute('/')({
   component: HomeRoute,
@@ -6,6 +7,8 @@ export const Route = createLazyFileRoute('/')({
 
 export default function HomeRoute () {
   return (
-    <p>Hello World!</p>
+    <ProtectedRoute>
+      <p>Hello World!</p>
+    </ProtectedRoute>
   )
 }
