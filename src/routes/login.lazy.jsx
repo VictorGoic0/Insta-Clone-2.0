@@ -22,17 +22,15 @@ export default function LoginRoute() {
 		};
 		const response = await login(userInfo);
 		
-		// set token and userId to localStorage
+		// set token to localStorage
 		localStorage.setItem("token", response.token);
-		localStorage.setItem("userID", response.userID);
-
-		// set currentUser state to context 
+		// set currentUser state to context and localStorage
 		const user = {
 			username: userInfo.username,
 			userID: response.userID
 		}
 		setCurrentUser(user)
-
+		localStorage.setItem("currentUser", JSON.stringify(user))
 		// navigate to home page
 		navigate({ to: "/" })
 	};
