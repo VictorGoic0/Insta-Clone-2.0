@@ -1,8 +1,9 @@
 import "../CSS/Login.css";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { useMutation } from "@tanstack/react-query";
 import signup from "../api/signup";
 import { useNavigate } from "@tanstack/react-router";
+import { useContext } from "react";
+import { CurrentUserContext } from "../contexts";
 
 export const Route = createLazyFileRoute("/signup")({
 	component: SignUpRoute,
@@ -10,19 +11,31 @@ export const Route = createLazyFileRoute("/signup")({
 
 export default function SignUpRoute() {
 	const navigate = useNavigate();
+	const [, setCurrentUser ] = useContext(CurrentUserContext);
 
-	const mutation = useMutation({
-		mutationFn: function (e) {
-			e.preventDefault();
-			const formData = new FormData(e.target);
-			const userInfo = {
-				username: formData.get("username"),
-				password: formData.get("password"),
-			};
-			return signup(userInfo);
-			// set currentUser here
-		},
-	});
+	const submitSignup = async (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target);
+		const userInfo = {
+			username: formData.get("username"),
+			password: formData.get("password"),
+		};
+		const response = await signup(userInfo);
+
+		// set token and userId to localStorage
+		localStorage.setItem("token", response.token);
+		localStorage.setItem("userID", response.userID);
+
+		// set currentUser state to context 
+		const user = {
+			username: userInfo.username,
+			userID: response.userID
+		}
+		setCurrentUser(user)
+
+		// navigate to home page
+		navigate({ to: "/" })
+	};
 
 	const switchLogin = () => {
 		navigate({ to: "/login" });
@@ -31,7 +44,7 @@ export default function SignUpRoute() {
 	return (
 		<div className="login">
 			<img src="/images/iglogo.png" alt="Instagram logo" />
-			<form onSubmit={mutation.mutate}>
+			<form onSubmit={submitSignup}>
 				<input type="text" name="username" placeholder="Username" required />
 				<input type="password" name="password" placeholder="Password" required />
 				<button>Sign Up</button>
