@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useLocation } from '@tanstack/react-router'
 import moment from "moment";
 import "../CSS/PostContainer.css";
 import SearchBar from "../SearchBar";
@@ -15,7 +15,7 @@ export const Route = createFileRoute('/posts/$id')({
 
 function PostPageComponent() {
   const { id } = Route.useParams();
-  console.log(id, "<--- id")
+  const location = useLocation();
   const [ currentUser ] = useContext(CurrentUserContext);
 
   const { isLoading, data: post } = useQuery({
@@ -87,8 +87,7 @@ function PostPageComponent() {
               <CommentSection
                 post_id={id}
                 comments={comments}
-                // path={this.props.match.path}
-                // figure out tanstack equivalent
+                path={location.pathname}
                 currentUser={currentUser}
               />
             </div>

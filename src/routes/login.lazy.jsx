@@ -14,7 +14,6 @@ export default function LoginRoute() {
 	const [currentUser, setCurrentUser ] = useContext(CurrentUserContext);
 
 	useEffect(() => {
-		console.log("currentUser", currentUser, "<--- effect fired!")
 		if (currentUser) {
 			// navigate to home page on login
 			navigate({ to: "/" })
