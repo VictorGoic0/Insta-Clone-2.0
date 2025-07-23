@@ -143,6 +143,16 @@ body {
 	font-family: sans-serif;
 }
 
+/* Fix TanStack Query dev tools font size */
+.tsqd-parent-container {
+	--tsqd-font-size: 16px !important;
+}
+
+/* Fix TanStack Router dev tools font size */
+.TanStackRouterDevtools {
+	--tsrd-font-size: 16px !important;
+}
+
 /* old app.css code */
 
 p {
