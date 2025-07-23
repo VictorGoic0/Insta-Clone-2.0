@@ -6,6 +6,7 @@ export default async function getPostById(postId) {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
+				authorization: localStorage.getItem("token"),
 			},
 		});
 		return response.json();

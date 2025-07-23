@@ -5,6 +5,7 @@ export default async function addPost(post) {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
+				authorization: localStorage.getItem("token"),
 			},
 			body: JSON.stringify(post),
 		});

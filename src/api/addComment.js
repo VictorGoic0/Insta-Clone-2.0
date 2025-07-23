@@ -7,6 +7,7 @@ export default async function addComment(comment) {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
+					authorization: localStorage.getItem("token"),
 				},
 				body: JSON.stringify(comment),
 			},

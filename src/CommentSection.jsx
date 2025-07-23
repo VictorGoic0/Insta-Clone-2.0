@@ -2,27 +2,39 @@ import { useContext, useState } from "react";
 import "./CSS/CommentSection.css";
 import Comment from "./Comment";
 import { CurrentUserContext } from "./contexts";
-// import addComment from "./api/addComment"
+import addComment from "./api/addComment"
 // import getCommentsByPostId from "./api/getCommentsByPostId"
 
 export default function CommentSection(props) {
   const { post_id, comments, path } = props;
-  const userId = localStorage.getItem("userID")
   const [showMore, setShowMore] = useState(true)
   const [comment, setComment] = useState("")
   const [ currentUser ] = useContext(CurrentUserContext);
   const postsPage = path && path.includes("posts")
 
-  const addNewComment = (e, comment) => {
+  const addNewComment = async (e, text) => {
+    e.preventDefault();
     console.log("add new comment")
+    const newComment = {
+      post_id,
+      user_id: currentUser.userID,
+      text
+    }
+    try {
+      const response = await addComment(newComment)
+      if (response) {
+        // need to set new comment to state
+        setComment("")
+      }
+    } catch (error) {
+      console.error(e)
+      alert(`Comment failed to post ${error}. Please try again.`);
+    }
+    
   }
 
   const getComments = (id) => {
     console.log("get comments")
-  }
-
-  const handleChanges = e => {
-    console.log(e, "<--- changes")
   }
 
   return (
@@ -55,8 +67,9 @@ export default function CommentSection(props) {
       <form onSubmit={(e) => addNewComment(e, comment)}>
         <input
           type="text"
+          name="comment"
           value={comment}
-          onChange={handleChanges}
+          onChange={(e) => setComment(e.target.value)}
           placeholder="Add a comment..."
           required
         />
