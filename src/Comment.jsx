@@ -12,7 +12,7 @@ export default function Comment(props) {
       <h4>{username}</h4>
       <p>{text}</p>
       {currentUser && currentUser.username === username ? (
-        <Trash2 size={14} color="#000" />
+        <Trash2 className="trash-icon" size={14} color="#000" />
       ) : null}
     </div>
   );

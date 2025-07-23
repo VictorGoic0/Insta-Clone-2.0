@@ -30,6 +30,10 @@
 	margin-left: 9px;
 }
 
+.post-header .trash-icon:hover {
+	cursor: pointer;
+}
+
 .post-img {
 	max-width: 603px;
 }

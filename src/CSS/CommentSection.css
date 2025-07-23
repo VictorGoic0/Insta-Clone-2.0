@@ -13,6 +13,10 @@
 	margin-left: 4px;
 }
 
+.comment .trash-icon:hover {
+	cursor: pointer;
+}
+
 .comments {
 	width: 97%;
 }

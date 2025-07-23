@@ -78,7 +78,7 @@ function PostPageComponent() {
               />
               <h2>{username}</h2>
               {currentUser && currentUser.userID === user_id ? (
-                <Trash2 size={18} color="#000" />
+                <Trash2 className="trash-icon" size={18} color="#000" />
               ) : null}
             </div>
             {description && description.length ? (

@@ -42,7 +42,7 @@ export default function Post(props) {
         <img className="thumbnail" src={thumbnailUrl} alt="profile thumbnail" />
         <h2>{username}</h2>
         {currentUser && currentUser.username === username ? (
-          <Trash2 size={18} color="#000" />
+          <Trash2 className="trash-icon" size={18} color="#000" />
         ) : null}
       </div>
       <Link to={`/posts/${id}`}>
