@@ -3,7 +3,7 @@ import "./CSS/CommentSection.css";
 import Comment from "./Comment";
 import { CurrentUserContext } from "./contexts";
 import addComment from "./api/addComment"
-// import getCommentsByPostId from "./api/getCommentsByPostId"
+import getCommentsByPostId from "./api/getCommentsByPostId"
 
 export default function CommentSection(props) {
   const { post_id, comments, path } = props;
@@ -24,6 +24,8 @@ export default function CommentSection(props) {
       const response = await addComment(newComment)
       if (response) {
         // need to set new comment to state
+        // without redux, i have 2 potential states to alter. post page state, or a specific post in the posts state
+        // context might be necessary, maybe even a reducer eventually for a cleaner flow
         setComment("")
       }
     } catch (error) {
@@ -33,9 +35,22 @@ export default function CommentSection(props) {
     
   }
 
-  const getComments = (id) => {
-    console.log("get comments")
+  const getComments = async (id) => {
+    try {
+      const response = await getCommentsByPostId(id)
+      toggleShowMore()
+      console.log(response, "<--- new comments")
+      // just like add comment, we need either context or a reducer to set parent state here.
+      // alternatively, these addNewComment and getComments methods can just be moved up one level
+      // this would lead to some duplicated code, but that'd be simpler than a reducer maybe? i hear the new hook is very simple though
+    } catch (error) {
+      console.error(error, "Error fetching comments")
+    }
   }
+
+  const toggleShowMore = () => {
+    setShowMore(prevState => !prevState)
+  };
 
   return (
     <div className="comments">
