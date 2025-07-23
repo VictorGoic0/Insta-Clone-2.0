@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Trash2 } from "lucide-react";
 import CommentSection from "./CommentSection"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CurrentUserContext } from "./contexts";
 
 export default function Post(props) {
@@ -14,6 +14,7 @@ export default function Post(props) {
     comments,
     showMore
   } = props.post;
+  const [ postComments, setPostComments ] = useState(comments)
   const [ currentUser ] = useContext(CurrentUserContext);
 
   const likePost = () => {
@@ -23,6 +24,16 @@ export default function Post(props) {
     // };
     // props.likePost(like);
   };
+
+  const addCommentToPost = (comment) => {
+    setPostComments((previousCommentsState) => {
+      return [...previousCommentsState, comment]
+    })
+  }
+
+  const addShowMoreCommentsToPost = (newComments) => {
+    setPostComments(newComments)
+  }
 
 
   return (
@@ -52,8 +63,10 @@ export default function Post(props) {
         <h3>{likes} likes</h3>
         <CommentSection
           post_id={id}
-          comments={comments}
+          comments={postComments}
           showMore={showMore}
+          addCommentToPost={addCommentToPost}
+          addShowMoreCommentsToPost={addShowMoreCommentsToPost}
         />
       </div>
     </div>

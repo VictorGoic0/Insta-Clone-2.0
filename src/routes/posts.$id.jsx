@@ -7,7 +7,7 @@ import { Trash2 } from "lucide-react";
 import { useQuery } from '@tanstack/react-query';
 import getPostById from '../api/getPostById';
 import { CurrentUserContext } from '../contexts';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 export const Route = createFileRoute('/posts/$id')({
   component: PostPageComponent,
@@ -17,12 +17,26 @@ function PostPageComponent() {
   const { id } = Route.useParams();
   const location = useLocation();
   const [ currentUser ] = useContext(CurrentUserContext);
+  const [ comments, setPostComments ] = useState([])
 
   const { isLoading, data: post } = useQuery({
     queryKey: ["posts", id],
     queryFn: () => getPostById(id),
     staleTime: 30000
   })
+
+  // initialize comments on post load
+  useEffect(() => {
+    if (post && post.comments && post.comments.length) {
+      setPostComments(post.comments)
+    }
+  }, [post])
+
+  const addCommentToPost = (comment) => {
+    setPostComments((previousCommentsState) => {
+      return [...previousCommentsState, comment]
+    })
+  }
 
   const likePost = () => {
     console.log("like fired")
@@ -43,11 +57,11 @@ function PostPageComponent() {
     username,
     imageUrl,
     likes,
-    comments,
     createdAt,
     user_id,
     description
   } = post;
+
     return (
       <>
         <SearchBar />
@@ -89,6 +103,7 @@ function PostPageComponent() {
                 comments={comments}
                 path={location.pathname}
                 currentUser={currentUser}
+                addCommentToPost={addCommentToPost}
               />
             </div>
           </div>
