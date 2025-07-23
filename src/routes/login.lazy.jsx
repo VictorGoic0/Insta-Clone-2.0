@@ -2,7 +2,7 @@ import "../CSS/Login.css";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import login from "../api/login";
 import { useNavigate } from "@tanstack/react-router";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CurrentUserContext } from "../contexts";
 
 export const Route = createLazyFileRoute("/login")({
@@ -11,7 +11,15 @@ export const Route = createLazyFileRoute("/login")({
 
 export default function LoginRoute() {
 	const navigate = useNavigate();
-	const [, setCurrentUser ] = useContext(CurrentUserContext);
+	const [currentUser, setCurrentUser ] = useContext(CurrentUserContext);
+
+	useEffect(() => {
+		console.log("currentUser", currentUser, "<--- effect fired!")
+		if (currentUser) {
+			// navigate to home page on login
+			navigate({ to: "/" })
+		}
+	}, [currentUser])
 
 	const submitLogin = async (e) => {
 		e.preventDefault();
@@ -31,8 +39,6 @@ export default function LoginRoute() {
 		}
 		setCurrentUser(user)
 		localStorage.setItem("currentUser", JSON.stringify(user))
-		// navigate to home page
-		navigate({ to: "/" })
 	};
 
 	const switchLogin = () => {
