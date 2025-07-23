@@ -9,9 +9,9 @@ export default function CommentSection(props) {
   const { post_id, comments, path } = props;
   const userId = localStorage.getItem("userID")
   const [showMore, setShowMore] = useState(true)
-  const [comment, setComment] = useState(true)
+  const [comment, setComment] = useState("")
   const [ currentUser ] = useContext(CurrentUserContext);
-  const postsPage = path.includes("posts")
+  const postsPage = path && path.includes("posts")
 
   const addNewComment = (e, comment) => {
     console.log("add new comment")
@@ -55,7 +55,7 @@ export default function CommentSection(props) {
       <form onSubmit={(e) => addNewComment(e, comment)}>
         <input
           type="text"
-          value={comment.text}
+          value={comment}
           onChange={handleChanges}
           placeholder="Add a comment..."
           required
