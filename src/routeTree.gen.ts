@@ -11,6 +11,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PostsIdRouteImport } from './routes/posts.$id'
 
 const SignupLazyRouteImport = createFileRoute('/signup')()
 const LoginLazyRouteImport = createFileRoute('/login')()
@@ -31,35 +32,44 @@ const IndexLazyRoute = IndexLazyRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+const PostsIdRoute = PostsIdRouteImport.update({
+  id: '/posts/$id',
+  path: '/posts/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
+  '/posts/$id': typeof PostsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
+  '/posts/$id': typeof PostsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexLazyRoute
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
+  '/posts/$id': typeof PostsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup'
+  fullPaths: '/' | '/login' | '/signup' | '/posts/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup'
-  id: '__root__' | '/' | '/login' | '/signup'
+  to: '/' | '/login' | '/signup' | '/posts/$id'
+  id: '__root__' | '/' | '/login' | '/signup' | '/posts/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   LoginLazyRoute: typeof LoginLazyRoute
   SignupLazyRoute: typeof SignupLazyRoute
+  PostsIdRoute: typeof PostsIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -85,6 +95,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/posts/$id': {
+      id: '/posts/$id'
+      path: '/posts/$id'
+      fullPath: '/posts/$id'
+      preLoaderRoute: typeof PostsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -92,6 +109,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   LoginLazyRoute: LoginLazyRoute,
   SignupLazyRoute: SignupLazyRoute,
+  PostsIdRoute: PostsIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
