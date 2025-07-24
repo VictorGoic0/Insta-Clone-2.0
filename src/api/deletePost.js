@@ -1,4 +1,4 @@
-export default async function getPostById(postId) {
+export default async function deletePost(postId) {
 	const endpoint = import.meta.env.VITE_BACKENDPOINT;
 
 	try {
