@@ -43,6 +43,10 @@ function PostPageComponent() {
     })
   }
 
+  const removeCommentFromPost = (commentId) => {
+    setPostComments((previousCommentsState) => previousCommentsState.filter((comment) => comment.id !== commentId))
+  }
+
   const onClickLikePost = async () => {
     const like = {
       user_id: currentUser.userID,
@@ -120,6 +124,7 @@ function PostPageComponent() {
                 path={location.pathname}
                 currentUser={currentUser}
                 addCommentToPost={addCommentToPost}
+                removeCommentFromPost={removeCommentFromPost}
               />
             </div>
           </div>

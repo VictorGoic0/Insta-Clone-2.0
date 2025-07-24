@@ -1,4 +1,4 @@
-export default async function deleteComment(postId, commentId) {
+export default async function deleteComment(commentId, postId) {
 	const endpoint = import.meta.env.VITE_BACKENDPOINT;
 
 	try {

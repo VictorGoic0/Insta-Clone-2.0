@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { CurrentUserContext } from "./contexts";
 
 export default function Comment(props) {
-  const { thumbnailUrl, username, text } = props.comment;
+  const { thumbnailUrl, username, text, id } = props.comment;
   const [ currentUser ] = useContext(CurrentUserContext);
 
   return (
@@ -12,7 +12,7 @@ export default function Comment(props) {
       <h4>{username}</h4>
       <p>{text}</p>
       {currentUser && currentUser.username === username ? (
-        <Trash2 className="trash-icon" size={14} color="#000" />
+        <Trash2 className="trash-icon" size={14} color="#000" onClick={e => props.deleteComment(e, id, props.post_id)} />
       ) : null}
     </div>
   );

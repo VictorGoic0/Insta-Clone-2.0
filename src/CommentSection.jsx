@@ -4,6 +4,7 @@ import Comment from "./Comment";
 import { CurrentUserContext } from "./contexts";
 import addComment from "./api/addComment"
 import getCommentsByPostId from "./api/getCommentsByPostId"
+import deleteComment from "./api/deleteComment";
 
 export default function CommentSection(props) {
   const { post_id, comments, path } = props;
@@ -32,6 +33,18 @@ export default function CommentSection(props) {
     
   }
 
+  const onClickDeleteComment = async (e, commentId, postId) => {
+    e.preventDefault();
+    try {
+      const response = await deleteComment(commentId, postId);
+      if (response) {
+        props.removeCommentFromPost(commentId)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const getComments = async (id) => {
     try {
       const response = await getCommentsByPostId(id)
@@ -56,6 +69,8 @@ export default function CommentSection(props) {
               key={comment.id}
               comment={comment}
               currentUser={currentUser}
+              post_id={post_id}
+              deleteComment={onClickDeleteComment}
             />
           ))
         : comments.map((comment) => (
@@ -63,6 +78,8 @@ export default function CommentSection(props) {
               key={comment.id}
               comment={comment}
               currentUser={currentUser}
+              post_id={post_id}
+              deleteComment={onClickDeleteComment}
             />
           ))}
       {props.showMore && showMore ? (

@@ -41,6 +41,11 @@ export default function Post(props) {
     })
   }
 
+  const removeCommentFromPost = (commentId) => {
+    setPostComments((previousCommentsState) => previousCommentsState.filter((comment) => comment.id !== commentId))
+  }
+
+
   const addShowMoreCommentsToPost = (newComments) => {
     setPostComments(newComments)
   }
@@ -75,6 +80,7 @@ export default function Post(props) {
           comments={postComments}
           showMore={showMore}
           addCommentToPost={addCommentToPost}
+          removeCommentFromPost={removeCommentFromPost}
           addShowMoreCommentsToPost={addShowMoreCommentsToPost}
         />
       </div>
