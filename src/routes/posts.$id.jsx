@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import getPostById from '../api/getPostById';
 import { CurrentUserContext } from '../contexts';
 import { useContext, useEffect, useState } from 'react';
+import likePost from '../api/likePost';
 
 export const Route = createFileRoute('/posts/$id')({
   component: PostPageComponent,
@@ -18,6 +19,7 @@ function PostPageComponent() {
   const location = useLocation();
   const [ currentUser ] = useContext(CurrentUserContext);
   const [ comments, setPostComments ] = useState([])
+  const [ likesCount, setLikesCount ] = useState(0)
 
   const { isLoading, data: post } = useQuery({
     queryKey: ["posts", id],
@@ -30,6 +32,9 @@ function PostPageComponent() {
     if (post && post.comments && post.comments.length) {
       setPostComments(post.comments)
     }
+    if (post) {
+      setLikesCount(Number(post.likes))
+    }
   }, [post])
 
   const addCommentToPost = (comment) => {
@@ -38,9 +43,21 @@ function PostPageComponent() {
     })
   }
 
-  const likePost = () => {
-    console.log("like fired")
-  }
+  const onClickLikePost = async () => {
+    const like = {
+      user_id: currentUser.userID,
+      post_id: id,
+    }
+    try {
+      const response = await likePost(like)
+      if (response) {
+        const isLiked = response.liked
+        setLikesCount((previousLikesCount) => isLiked ? previousLikesCount + 1 : previousLikesCount - 1)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  };
 
   if (isLoading || id === undefined) {
     return (
@@ -56,7 +73,6 @@ function PostPageComponent() {
     thumbnailUrl,
     username,
     imageUrl,
-    likes,
     createdAt,
     user_id,
     description
@@ -90,14 +106,14 @@ function PostPageComponent() {
                 src="https://img.icons8.com/windows/32/000000/like.png"
                 alt="heart"
                 className="logo"
-                onClick={likePost}
+                onClick={onClickLikePost}
               />
               <img
                 src="https://img.icons8.com/windows/32/000000/speech-bubble.png"
                 alt="comment"
                 className="logo"
               />
-              <h3>{likes} likes</h3>
+              <h3>{likesCount} likes</h3>
               <CommentSection
                 post_id={id}
                 comments={comments}

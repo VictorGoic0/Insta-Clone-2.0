@@ -3,6 +3,7 @@ import { Trash2 } from "lucide-react";
 import CommentSection from "./CommentSection"
 import { useContext, useState } from "react";
 import { CurrentUserContext } from "./contexts";
+import likePost from "./api/likePost";
 
 export default function Post(props) {
   const {
@@ -14,15 +15,24 @@ export default function Post(props) {
     comments,
     showMore
   } = props.post;
+  const [ likesCount, setLikesCount ] = useState(Number(likes))
   const [ postComments, setPostComments ] = useState(comments)
   const [ currentUser ] = useContext(CurrentUserContext);
 
-  const likePost = () => {
-    // const like = {
-    //   user_id: Number(localStorage.getItem("userID")),
-    //   post_id: id,
-    // };
-    // props.likePost(like);
+  const onClickLikePost = async () => {
+    const like = {
+      user_id: currentUser.userID,
+      post_id: id,
+    }
+    try {
+      const response = await likePost(like)
+      if (response) {
+        const isLiked = response.liked
+        setLikesCount((previousLikesCount) => isLiked ? previousLikesCount + 1 : previousLikesCount - 1)
+      }
+    } catch (error) {
+      console.error(error)
+    }
   };
 
   const addCommentToPost = (comment) => {
@@ -34,7 +44,6 @@ export default function Post(props) {
   const addShowMoreCommentsToPost = (newComments) => {
     setPostComments(newComments)
   }
-
 
   return (
     <div className="post">
@@ -53,14 +62,14 @@ export default function Post(props) {
           src="https://img.icons8.com/windows/32/000000/like.png"
           alt="heart"
           className="logo"
-          onClick={likePost}
+          onClick={onClickLikePost}
         />
         <img
           src="https://img.icons8.com/windows/32/000000/speech-bubble.png"
           alt="comment"
           className="logo"
         />
-        <h3>{likes} likes</h3>
+        <h3>{likesCount} likes</h3>
         <CommentSection
           post_id={id}
           comments={postComments}
